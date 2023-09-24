@@ -117,25 +117,25 @@
         
           
             <li>
-              <a title="Blog" href="/tellmeaboot">Blog</a>
+              <a title="Blog" href="https://georou.github.io/tellmeaboot/">Blog</a>
             </li>
           
         
           
             <li>
-              <a title="Tags" href="/tellmeaboot/tags">Tags</a>
+              <a title="Tags" href="https://georou.github.io/tellmeaboot/tags">Tags</a>
             </li>
           
         
           
             <li>
-              <a title="About" href="/tellmeaboot/page/about/">About</a>
+              <a title="About" href="https://georou.github.io/tellmeaboot/page/about/">About</a>
             </li>
           
         
           
             <li>
-              <a title="Archives" href="/tellmeaboot/post">Archives</a>
+              <a title="Archives" href="https://georou.github.io/tellmeaboot/post">Archives</a>
             </li>
           
         
@@ -298,7 +298,7 @@
 <p>Throwing it out or sending it back for warranty seems to be tempting at this point - except, why is it like clock work at 20 minutes. If it was faulty, that would stand to reason it would be erratic.</p>
 <p><strong>What network mechanism starts/stops or resets at 20 minutes?</strong> I&rsquo;m sure a network engineer might have an inkling of an idea - but for me, I have to work from the ground up on this.</p>
 <h2 id="wireshark-and-tcpdump-to-the-rescue">Wireshark and tcpdump to the rescue</h2>
-<p><img src="/images/ubiquiti-capture-diagram.jpg" alt="Network Diagram"></p>
+<p><img src="https://georou.github.io/tellmeaboot/images/ubiquiti-capture-diagram.jpg" alt="Network Diagram"></p>
 <p>Since we&rsquo;re now dealing with a possible network issue, it&rsquo;s time to bust out the packet captures to watch on the wire.</p>
 <p>For convenience, I&rsquo;ll start a packet capture on the pfSense box, looking at the interface the AP is on. Marked, <code>Number 1.</code> Diagnostics &gt; Packet capture &gt; Enable promiscuous mode &gt; LAN &gt; count: 0 &gt; Do reverse DNS lookup &raquo; Start</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Source            Destination           Protocol Length Info
@@ -313,7 +313,7 @@
 </span></span><span class="line"><span class="cl">PFSense:FF:FF     Client:FF:FE          ARP      42  192.168.100.1 is at 00:0d:b9:48:5f:fe
 </span></span></code></pre></div><p>When the interruption occurs using the client machine, I notice that traffic to the 192.168.100.100 stops and the router is sending out multiple ARP requests just before for the client that aren&rsquo;t being answered. Then the interruption occurs, and finally traffic resumes after the device sends it&rsquo;s own ARP request for the gateway. Interesting! so the ARP entry isn&rsquo;t getting refresh on the router.</p>
 <p>Back to the the pfSense router, Diagnostics &gt; ARP Table. Filtering for the computer, when it first requests an IP and connects to the network, the default expire time is <strong>20 minutes</strong>&hellip;.looks familiar! Turns out, 20 minutes is the default timeout in pfSense/freeBSD.</p>
-<p><img src="/images/pfsense-arp-1.jpg" alt="pfSense ARP Table"></p>
+<p><img src="https://georou.github.io/tellmeaboot/images/pfsense-arp-1.jpg" alt="pfSense ARP Table"></p>
 <p>If the ARP entry is expiring from the router, that would explain the traffic flow interruption. You can also see that traffic restores once the client sends an ARP itself, looking for the gateway. So why doesn&rsquo;t the client respond to the router&rsquo;s requests at the beginning?</p>
 <p>Let&rsquo;s check a capture from the client&rsquo;s end, Number 4, to check if they even received the ARP request. <strong>It doesn&rsquo;t</strong>. So, the issue looks like the AP again.</p>
 <p>Next, I&rsquo;m going to packet capture using tcpdump built into the Ubiquiti AP to see if the ARP actually gets to the physical interface side, Number 2. Enable SSH access via Ubiquiti controller: System &gt; Device SSH Authentication &gt; Enable Device SSH Authentication and note the username and password. <a href="https://help.ui.com/hc/en-us/articles/227129127-UniFi-Methods-for-Capturing-Useful-Debug-Information">Using Ubiquiti&rsquo;s tcpdump debug page as a guide</a>, we want to find the physical interface to listen on. Find the interfaces, <code>ip link</code> and <code>iwconfig</code> to sort them, usually marked EthX with a bridge interface for the WLAN side; AthX. We want to first check the interface: Eth0</p>
@@ -328,7 +328,7 @@
 </span></span></code></pre></div><p>This shows that the ARP request is actually getting to the interface. That rules out anything along the path to the AP. It also shows the amount of requests the router tries before the entry is expired. It isn&rsquo;t just once.</p>
 <p>Trying to now capture from Number 3, which is the interface on the WLAN side - <code>tcpdump -i ath0 arp</code> shows that the ARP doesn&rsquo;t make it across. Here&rsquo;s our ground zero. Between the two interfaces.</p>
 <p>I recall seeing a Proxy ARP option in the wireless settings in the Ubiquiti controller for the network. But by default it is off. Makes sense as you don&rsquo;t really want broadcasts flooding over to the WLAN side - for performance reasons.</p>
-<p><img src="/images/proxy-arp-toggle.jpg" alt="Proxy ARP Option"></p>
+<p><img src="https://georou.github.io/tellmeaboot/images/proxy-arp-toggle.jpg" alt="Proxy ARP Option"></p>
 <p>Also interestingly, this is the new GUI that Ubiquiti released and the older one had an option called <strong>&ldquo;Block LAN to WLAN multi/broadcast&rdquo;</strong>. Looks like the Proxy ARP options replaces that older one.</p>
 <p><strong>Turning on Proxy ARP, has fixed the issues</strong>. It does what it says on the tin. If the AP knows of a device with that IP on the WLAN side, it will proxy an ARP reply to the device that requested it, thus saving not having to send it out over the air.</p>
 <p><code>Mystery solved.</code></p>
@@ -357,15 +357,15 @@
                   <ul>
                 
                 
-                    <li><a href="/tellmeaboot/post/2022/juniper-ssh-preauth-error/">Juniper Switch SSH &#39;Expecting SSH2_MSG_KEX_ECDH_REPLY&#39; Error</a></li>
+                    <li><a href="https://georou.github.io/tellmeaboot/post/2022/juniper-ssh-preauth-error/">Juniper Switch SSH &#39;Expecting SSH2_MSG_KEX_ECDH_REPLY&#39; Error</a></li>
                 
-                    <li><a href="/tellmeaboot/post/2022/pfsense-ax88179-usb3-compatibility/">PfSense AX88179 vs RTL8153 USB 3 Ethernet Compatibility</a></li>
+                    <li><a href="https://georou.github.io/tellmeaboot/post/2022/pfsense-ax88179-usb3-compatibility/">PfSense AX88179 vs RTL8153 USB 3 Ethernet Compatibility</a></li>
                 
-                    <li><a href="/tellmeaboot/post/2021/client-to-nvr-isolated-cctv/">Client to NVR Isolated CCTV with VLAN and a Virtual Machine</a></li>
+                    <li><a href="https://georou.github.io/tellmeaboot/post/2021/client-to-nvr-isolated-cctv/">Client to NVR Isolated CCTV with VLAN and a Virtual Machine</a></li>
                 
-                    <li><a href="/tellmeaboot/post/2021/cisco-sg300-port-security-and-mac-filtering/">Cisco SG300 Port Security and Static Mac Filtering</a></li>
+                    <li><a href="https://georou.github.io/tellmeaboot/post/2021/cisco-sg300-port-security-and-mac-filtering/">Cisco SG300 Port Security and Static Mac Filtering</a></li>
                 
-                    <li><a href="/tellmeaboot/post/2017/ip-camera-security-audit/">How To Access An IP Camera&#39;s Embedded Linux OS Through A Serial UART/TTL Port</a></li>
+                    <li><a href="https://georou.github.io/tellmeaboot/post/2017/ip-camera-security-audit/">How To Access An IP Camera&#39;s Embedded Linux OS Through A Serial UART/TTL Port</a></li>
                 
               </ul>
 

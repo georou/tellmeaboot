@@ -117,25 +117,25 @@
         
           
             <li>
-              <a title="Blog" href="/tellmeaboot">Blog</a>
+              <a title="Blog" href="https://georou.github.io/tellmeaboot/">Blog</a>
             </li>
           
         
           
             <li>
-              <a title="Tags" href="/tellmeaboot/tags">Tags</a>
+              <a title="Tags" href="https://georou.github.io/tellmeaboot/tags">Tags</a>
             </li>
           
         
           
             <li>
-              <a title="About" href="/tellmeaboot/page/about/">About</a>
+              <a title="About" href="https://georou.github.io/tellmeaboot/page/about/">About</a>
             </li>
           
         
           
             <li>
-              <a title="Archives" href="/tellmeaboot/post">Archives</a>
+              <a title="Archives" href="https://georou.github.io/tellmeaboot/post">Archives</a>
             </li>
           
         
@@ -278,13 +278,13 @@
 </ul>
 <h3 id="crack-it-open-like-an-egg">Crack it open like an egg!</h3>
 <p>We’ll be looking at this IP Camera that is sold under different brands but is essentially the same innards. It has an interface available on port 80 and other features you&rsquo;d expect from an IP camera - SMTP, remote viewing etc.</p>
-<p><img src="/images/ip-camera-pics/ip-camera-stock.jpg" alt="IP Camera Stock"></p>
+<p><img src="https://georou.github.io/tellmeaboot/images/ip-camera-pics/ip-camera-stock.jpg" alt="IP Camera Stock"></p>
 <p>First step is to disassemble the outer housing. Once it’s out of the housing, the lower half simply twists off. Don’t forget to hold the cable stationary as you unscrew, otherwise it will twist the wire ends in the camera and possibly snap them.</p>
-<p><img src="/images/ip-camera-pics/ip-camera-housing.jpg" alt="IP Camera Opened"></p>
+<p><img src="https://georou.github.io/tellmeaboot/images/ip-camera-pics/ip-camera-housing.jpg" alt="IP Camera Opened"></p>
 <h3 id="looking-for-the-serial-uart-port">Looking for the Serial UART port</h3>
 <p>Now we need to go ahead find our interface port. Typically with these types of devices it will be using a <a href="https://en.wikipedia.org/wiki/Universal_asynchronous_receiver/transmitter">Serial UART</a> port. It’s important to have an idea how it works, I suggest reading the page over at <a href="https://www.sparkfun.com/tutorials/215">SparkFun&rsquo;s website.</a></p>
 <p>We’re looking for a 3-4 pins, exposed on the board. This one looks like a likely candidate:</p>
-<p><img src="/images/ip-camera-pics/ip-camera-open-uartport.jpg" alt="UART Close Up"></p>
+<p><img src="https://georou.github.io/tellmeaboot/images/ip-camera-pics/ip-camera-open-uartport.jpg" alt="UART Close Up"></p>
 <p>Inspecting it further, we can see one pin (P4) is ground. The other 3 will be transmit (Tx), Receive (Rx) and Vcc. It’s always good to confirm the ground pin is in indeed connected by using a multi meter and testing between another known ground source. This is done using the continuity setting. I suggest using a close ground point.</p>
 <p>This could be the end if it isn’t a serial port. There’s no guarantee it is until we try it. There’s nothing else that resembles what we need on the PCB.</p>
 <h3 id="probe-that-port">Probe that port!</h3>
@@ -292,7 +292,7 @@
 We need to establish what level this operates on so we can select an appropriate Serial-to-USB converter. <strong>This step is extremely important because putting 5V on a 3.3V logic bus will likely do damage.</strong></p>
 <p>We have a few choices on how we determine the voltage used. I’ll show you one way to do it using a multi meter. You can also use an Oscilloscope which will also be handy to determine the baud rate later on. But it isn’t completely needed as you can get the same result with trial and error.</p>
 <p>Turn the device on and using your multi meter, negative lead on the known ground pin and use positive to probe the other pins while the device is powering up. It’s best to test just as you power the device up since the serial traffic might stop once it has booted. In this case, it’s most likely a 3.3V logic level.</p>
-<p><img src="/images/ip-camera-pics/ip-camera-open-multimeter.jpg" alt="Multimeter Voltage Check"></p>
+<p><img src="https://georou.github.io/tellmeaboot/images/ip-camera-pics/ip-camera-open-multimeter.jpg" alt="Multimeter Voltage Check"></p>
 <p>While we&rsquo;re here, we can try to determine which pin could be Tx and Rx. Reboot if necessary each time since the boot period is when the transmit pin will be doing most of the work. Using the probe on ground and selecting a candidate pin, observe the voltage level. It is normally pulled high to rough 3.3V and will drop to 0V as the bits are being transmitted. You&rsquo;ll need to have a fairly good multi meter for this as they can be slow at reading rapid changes in voltage and since they measure an average, you wont see much if any change.</p>
 <p>Power off for now.</p>
 <h3 id="bring-out-the-converter">Bring out the converter</h3>
@@ -300,7 +300,7 @@ We need to establish what level this operates on so we can select an appropriate
 <p>The key features I suggest: 5V and 3.3V selectable - This saves you buying multiple converters. A DTR lead - Useful for Arduino tinkering and allows you upload to it without manually resetting.</p>
 <p>If you’ve found or are using an FTDI converter, there has been some issues using it on Windows (since 2016). FTDI in an effort to stop clones, made the Windows driver inject random data while using it. Hackaday have some more info: <a href="https://hackaday.com/tag/ftdi-gate">FTDI Gate</a>. I suggest either not using an FTDI with Windows or using it on Linux to be safe.</p>
 <p>Now that we know where the port is and that it’s 3.3V logic, we need to rig up a way to connect it to our converter. I used some bread board jumper leads since they’re the easiest to manipulate. <strong>Be careful you don’t short them together pushing them too far on the underside.</strong></p>
-<p><img src="/images/ip-camera-pics/ip-camera-cables.jpg" alt="Serial UART to converter connection"></p>
+<p><img src="https://georou.github.io/tellmeaboot/images/ip-camera-pics/ip-camera-cables.jpg" alt="Serial UART to converter connection"></p>
 <p>Figuring out which pin is Rx and Tx is just trial and error at this point. You’ll find most often that, Vcc is on the furthest pin from GND, with Tx and Rx in the middle. Focus on the two middle pins first. In this case, it is:</p>
 <pre><code>P1:Vcc - P2:Tx – P3:Rx – P4:GND
 </code></pre>
@@ -310,37 +310,37 @@ We need to establish what level this operates on so we can select an appropriate
 <p>With the ends connected to your serial converter, plug it in to your PC. We’ll be using Linux for this but you can do it using Windows or Mac.</p>
 <p>There’s a range of different serial emulators to pick from, we’ll be using <code>minicom</code> since I’ve had the most luck with it on lots of other applications. It should be available in your distros repository.</p>
 <p>Start up <code># minicom</code>. We’ll need to adjust it to the baud rate of the camera to be able to communicate with it. More info on baud rates <a href="https://learn.sparkfun.com/tutorials/serial-communication/rules-of-serial">here.</a> Since this time we’re not using an oscilloscope, we’ll have to use trial and error to get it right.</p>
-<p><img src="/images/ip-camera-pics/minicom-config1.jpg" alt="minicom config"></p>
-<p><img src="/images/ip-camera-pics/minicom-config.jpg" alt="minicom config"></p>
+<p><img src="https://georou.github.io/tellmeaboot/images/ip-camera-pics/minicom-config1.jpg" alt="minicom config"></p>
+<p><img src="https://georou.github.io/tellmeaboot/images/ip-camera-pics/minicom-config.jpg" alt="minicom config"></p>
 <p>Bring up the setup menu with <code>Ctrl + Z then o</code> (the letter). Select: <code>Serial port setup</code> then press <code>E</code>. A good guess would be to start with 115200 baud rate and go down from there. You’ll most likely need to select your parity, data and stop bits too. The normal standard is 8N1 - I suggest trying Q and R preset first and then adjusting it from there. Read up on those different settings in the previous link.</p>
 <p>Enter to exit, optionally save or exit back to the main window in minicom. It will now be waiting to receive data through /dev/ttyUSB0. Power on the camera and take a look:</p>
-<p><img src="/images/ip-camera-pics/console-wrong-baud-rate.jpg" alt="Serial console wrong baud rate"></p>
+<p><img src="https://georou.github.io/tellmeaboot/images/ip-camera-pics/console-wrong-baud-rate.jpg" alt="Serial console wrong baud rate"></p>
 <p>If you get random junk all over the terminal, you haven’t got the right baud rate and/or bits. You’ll know you’re close to the correct rate when you start seeing legible or semi-legible words. You’ll need to probably reboot your device each time you try since it might not be writing anything to serial once it has fully booted.</p>
 <h3 id="were-in-like-flynn--sorry-dave-im-pinching-your-saying">We’re in like Flynn! – Sorry Dave, I’m pinching your saying!</h3>
 <p>Once you’ve got the right rate, in my case it was <code>115200 8N1</code>, you should be able to see what is going on in the serial terminal. This particular camera is using <a href="http://www.denx.de/wiki/U-Boot">U-Boot</a> as its bootloader. I also noticed at the start it said to hit any button to interrupt – noted for later.
 After it boots, we are presented with a login prompt. The easy default passwords and login names don’t work. A possible dead end! But we can go around it. We essentially now want to change the bootloader’s kernel line so that it drops us into single user mode.</p>
 <p>Reboot and hit space to interrupt the boot up sequence and get into U-Boot’s bootloader prompt.</p>
 <p>Going with help to start off will give you an idea what you can do. Looking over U-Boot’s documentation, using <code>printenv</code> will give us what we need</p>
-<p><img src="/images/ip-camera-pics/printenv.jpg" alt="u-boot printenv"></p>
+<p><img src="https://georou.github.io/tellmeaboot/images/ip-camera-pics/printenv.jpg" alt="u-boot printenv"></p>
 <p>A lot of good information can be seen here. In particular we’re interested in the boot arguments line. As with any nix operating system, inserting single or 1 at the end should do the trick for single user mode – we need a root shell.</p>
 <p><strong>This is one of those spots where it’s easy to misconfigure the boot parameters and end up with a non-booting device. ALWAYS make a copy of what was there before – by now this should be usual practice.</strong></p>
 <p>Copy the existing bootargs and then:</p>
 <pre><code>setenv bootargs 'exisiting stuff with single at the end'
 </code></pre>
 <p>Make note of the single quotes!!</p>
-<p><img src="/images/ip-camera-pics/saveenv.jpg" alt="u-boot prompt"></p>
+<p><img src="https://georou.github.io/tellmeaboot/images/ip-camera-pics/saveenv.jpg" alt="u-boot prompt"></p>
 <p>Once you check it’s worked with <code>printenv</code> again, go ahead and <code>saveenv</code> then <code>reset</code>.
 Mine is cutoff on the right side, though. But it&rsquo;s there</p>
 <h3 id="i-am-root">I am root</h3>
 <p>If all went well, you should be dropped into a root shell. Check with <code>id</code>.</p>
-<p><img src="/images/ip-camera-pics/id-root.jpg" alt="root access gained"></p>
+<p><img src="https://georou.github.io/tellmeaboot/images/ip-camera-pics/id-root.jpg" alt="root access gained"></p>
 <p>From here we can check the passwd file and pinch the passwords for cracking them later on with John The Ripper.</p>
 <p>Since we’re in single user mode, the normal functions of the camera won’t be operational, while we can have a poke around now, it’s a little better to do so when the system is running in its normal mode.</p>
 <p>Add ourselves to the local users, but with a twist. We’re going to change our UID to that of root. Now that when we login, we’ll be using a root account, but not the existing one. Good idea to leave everything untouched.  I like to go with audit as a username:</p>
-<p><img src="/images/ip-camera-pics/passwd.jpg" alt="passwd file"></p>
+<p><img src="https://georou.github.io/tellmeaboot/images/ip-camera-pics/passwd.jpg" alt="passwd file"></p>
 <h3 id="time-to-audit">Time to audit</h3>
 <p>Reboot and login with the username you picked and password. Now that we’re in, we can have a look around. Just as something simple to leave you with, running <code>netstat –tulpn</code> reveals that there is a telnet daemon running on port 28 (Telnet usual runs on port 23). Why have telent open? Nothing about it in the normal GUI. Another reason why we need to be weary of these devices. Could be innocent, a mistake or not.</p>
-<p><img src="/images/ip-camera-pics/netstat.jpg" alt="id is root"></p>
+<p><img src="https://georou.github.io/tellmeaboot/images/ip-camera-pics/netstat.jpg" alt="id is root"></p>
 <h2 id="conclusion">Conclusion</h2>
 <p>This is just one step in an audit process. Finding the open telnet would have been possible with an <code>nmap</code> scan of course and that&rsquo;s where I start from. But then we wouldn’t have any login details. I’ll cover <code>nmap</code> scanning as a method of gaining access in a future post where we do have login details. There’s also using <code>tcpdump</code> to log everything that the camera tries to send on the network, another future post.</p>
 <p>Hopefully this has sparked that spark in you to be interested in opening up IoT type devices and checking them yourself.</p>
@@ -369,13 +369,13 @@ Mine is cutoff on the right side, though. But it&rsquo;s there</p>
                   <ul>
                 
                 
-                    <li><a href="/tellmeaboot/post/2021/client-to-nvr-isolated-cctv/">Client to NVR Isolated CCTV with VLAN and a Virtual Machine</a></li>
+                    <li><a href="https://georou.github.io/tellmeaboot/post/2021/client-to-nvr-isolated-cctv/">Client to NVR Isolated CCTV with VLAN and a Virtual Machine</a></li>
                 
-                    <li><a href="/tellmeaboot/post/2021/ubiquiti-ap-proxy-arp/">Ubiquiti AP Proxy ARP Disruption</a></li>
+                    <li><a href="https://georou.github.io/tellmeaboot/post/2021/ubiquiti-ap-proxy-arp/">Ubiquiti AP Proxy ARP Disruption</a></li>
                 
-                    <li><a href="/tellmeaboot/post/2017/linux-serial-virsh-console/">Virsh Serial Console Size and Wrapping Fix</a></li>
+                    <li><a href="https://georou.github.io/tellmeaboot/post/2017/linux-serial-virsh-console/">Virsh Serial Console Size and Wrapping Fix</a></li>
                 
-                    <li><a href="/tellmeaboot/post/2017/local-kvm-kickstart-file/">How To Use A Local Kickstart File For KVM</a></li>
+                    <li><a href="https://georou.github.io/tellmeaboot/post/2017/local-kvm-kickstart-file/">How To Use A Local Kickstart File For KVM</a></li>
                 
               </ul>
 
