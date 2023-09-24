@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>pfsense on Tell Me Aboot</title>
+    <link>https://georou.github.io/tellmeaboot/tags/pfsense/</link>
+    <description>Recent content in pfsense on Tell Me Aboot</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 25 Feb 2022 15:12:03 +1000</lastBuildDate><atom:link href="https://georou.github.io/tellmeaboot/tags/pfsense/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>pfSense LCDproc UPS Display</title>
+      <link>https://georou.github.io/tellmeaboot/post/2022/pfsense-lcdproc-ups-display/</link>
+      <pubDate>Fri, 25 Feb 2022 15:12:03 +1000</pubDate>
+      
+      <guid>https://georou.github.io/tellmeaboot/post/2022/pfsense-lcdproc-ups-display/</guid>
+      <description>&lt;p&gt;I noticed that the LCDproc package on pfSense doesn&amp;rsquo;t have a way to display UPS battery information. Well, what better way to dust off that PHP coding hat than to add it myself.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

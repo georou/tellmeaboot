@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tell Me Aboot</title>
+    <link>https://georou.github.io/tellmeaboot/</link>
+    <description>Recent content on Tell Me Aboot</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 02 Aug 2022 22:40:32 +1000</lastBuildDate><atom:link href="https://georou.github.io/tellmeaboot/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Juniper Switch SSH &#39;Expecting SSH2_MSG_KEX_ECDH_REPLY&#39; Error</title>
+      <link>https://georou.github.io/tellmeaboot/post/2022/juniper-ssh-preauth-error/</link>
+      <pubDate>Tue, 02 Aug 2022 22:40:32 +1000</pubDate>
+      
+      <guid>https://georou.github.io/tellmeaboot/post/2022/juniper-ssh-preauth-error/</guid>
+      <description>&lt;p&gt;I was trying to SSH into a Juniper switch running JunOS 12.3, the connection would fail with &lt;code&gt;Connection closed by &amp;lt;switch IP&amp;gt;&lt;/code&gt;. Using ssh -vvv showed an error: &lt;code&gt;Debug: debug1: expecting SSH2_MSG_KEX_ECDH_REPLY&lt;/code&gt;. This is a nice rabbit hole to go down as we&amp;rsquo;re going to use SSH&amp;rsquo;s verbose mode, nmap to debug the solution.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>pfSense LCDproc UPS Display</title>
+      <link>https://georou.github.io/tellmeaboot/post/2022/pfsense-lcdproc-ups-display/</link>
+      <pubDate>Fri, 25 Feb 2022 15:12:03 +1000</pubDate>
+      
+      <guid>https://georou.github.io/tellmeaboot/post/2022/pfsense-lcdproc-ups-display/</guid>
+      <description>&lt;p&gt;I noticed that the LCDproc package on pfSense doesn&amp;rsquo;t have a way to display UPS battery information. Well, what better way to dust off that PHP coding hat than to add it myself.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>PfSense AX88179 vs RTL8153 USB 3 Ethernet Compatibility</title>
+      <link>https://georou.github.io/tellmeaboot/post/2022/pfsense-ax88179-usb3-compatibility/</link>
+      <pubDate>Thu, 20 Jan 2022 19:36:09 +1000</pubDate>
+      
+      <guid>https://georou.github.io/tellmeaboot/post/2022/pfsense-ax88179-usb3-compatibility/</guid>
+      <description>&lt;p&gt;Trying to add another interface to a pfSense box but because it has run out of ports, I had to resort to using a USB 3 Ethernet dongle. Assuming (wrongly) that since it is based on the AX88179 chip and being somewhat older that it would be supported better. That wasn&amp;rsquo;t the case.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Client to NVR Isolated CCTV with VLAN and a Virtual Machine</title>
+      <link>https://georou.github.io/tellmeaboot/post/2021/client-to-nvr-isolated-cctv/</link>
+      <pubDate>Thu, 11 Nov 2021 21:33:43 +1000</pubDate>
+      
+      <guid>https://georou.github.io/tellmeaboot/post/2021/client-to-nvr-isolated-cctv/</guid>
+      <description>&lt;p&gt;Installing NVR software is a bit of a blackbox. In this post, we&amp;rsquo;re going to isolate the software, network and NVR via a VLAN and use the software in a Virtual Machine that has a separate dedicated interface to that VLAN.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Ubiquiti AP Proxy ARP Disruption</title>
+      <link>https://georou.github.io/tellmeaboot/post/2021/ubiquiti-ap-proxy-arp/</link>
+      <pubDate>Mon, 09 Aug 2021 19:37:15 +1000</pubDate>
+      
+      <guid>https://georou.github.io/tellmeaboot/post/2021/ubiquiti-ap-proxy-arp/</guid>
+      <description>&lt;p&gt;A client was having issues with a real time video or voice streaming dropping out for a few seconds every 20 minutes - only via WiFi using a Ubiquiti AP-AC-LR access point.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Cisco SG300 Port Security and Static Mac Filtering</title>
+      <link>https://georou.github.io/tellmeaboot/post/2021/cisco-sg300-port-security-and-mac-filtering/</link>
+      <pubDate>Sun, 25 Jul 2021 19:52:07 +1000</pubDate>
+      
+      <guid>https://georou.github.io/tellmeaboot/post/2021/cisco-sg300-port-security-and-mac-filtering/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;ve got a device attached to a Cisco SG300 switch that I don&amp;rsquo;t trust which is on a separate VLAN. As an exercise, using DAI(Dynamic ARP Inspection) is the preferred solution but I want to manually statically assign the IP and MAC to the port instead.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>How To Access An IP Camera&#39;s Embedded Linux OS Through A Serial UART/TTL Port</title>
+      <link>https://georou.github.io/tellmeaboot/post/2017/ip-camera-security-audit/</link>
+      <pubDate>Sun, 10 Sep 2017 08:01:44 +1100</pubDate>
+      
+      <guid>https://georou.github.io/tellmeaboot/post/2017/ip-camera-security-audit/</guid>
+      <description>&lt;p&gt;IP Cameras and Internet of Things in this day and age mostly have serial ports available on their PCB that will allow you to gain root access. They nearly all run embedded Linux and so, with some electronics and Linux knowledge, we can have a look around in the OS.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Virsh Serial Console Size and Wrapping Fix</title>
+      <link>https://georou.github.io/tellmeaboot/post/2017/linux-serial-virsh-console/</link>
+      <pubDate>Sun, 26 Feb 2017 23:16:10 +1100</pubDate>
+      
+      <guid>https://georou.github.io/tellmeaboot/post/2017/linux-serial-virsh-console/</guid>
+      <description>&lt;p&gt;If you’ve used Virsh to access a serial console on a Linux VM, you would have noticed that text gets cut off or doesn’t wrap properly. This is because the serial console hasn’t got any bounds set.  I’ll show you how to fix it.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Using a Chromecast with an Analog TV</title>
+      <link>https://georou.github.io/tellmeaboot/post/2017/chromecast-hdmi-to-composite-converter/</link>
+      <pubDate>Mon, 20 Feb 2017 02:18:52 +1100</pubDate>
+      
+      <guid>https://georou.github.io/tellmeaboot/post/2017/chromecast-hdmi-to-composite-converter/</guid>
+      <description>&lt;p&gt;Using a Chromecast is an excellent, simple and convenient way to watch Netflix, YouTube or even cast your local media to a TV. But what if you only have a spare analog TV lying around? Using a HDMI to Composite converter you can bring that TV back to life for under $25!&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Square Text When SSH X11 Forwarding CentOS</title>
+      <link>https://georou.github.io/tellmeaboot/post/2017/x11-forwarding-square-text-fix/</link>
+      <pubDate>Fri, 03 Feb 2017 04:56:24 +1100</pubDate>
+      
+      <guid>https://georou.github.io/tellmeaboot/post/2017/x11-forwarding-square-text-fix/</guid>
+      <description>&lt;p&gt;Why does my text show up as square characters when I forward an X11 session via SSH with CentOS? I&amp;rsquo;ll show you how to fix it and why it happens.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>How To Use A Local Kickstart File For KVM</title>
+      <link>https://georou.github.io/tellmeaboot/post/2017/local-kvm-kickstart-file/</link>
+      <pubDate>Thu, 05 Jan 2017 18:16:22 +1100</pubDate>
+      
+      <guid>https://georou.github.io/tellmeaboot/post/2017/local-kvm-kickstart-file/</guid>
+      <description>&lt;p&gt;Using a local kickstart file can be tricky at first without knowing the proper method. Many guides just copy and paste using vsftp. Here&amp;rsquo;s how to do it locally.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>https://georou.github.io/tellmeaboot/page/about/</link>
+      <pubDate>Sun, 01 Jan 2017 04:44:00 +1100</pubDate>
+      
+      <guid>https://georou.github.io/tellmeaboot/page/about/</guid>
+      <description>Any time I come across something neat or waste hours on troubleshooting only to find it&amp;rsquo;s something unforeseen or obscure - I&amp;rsquo;ll throw it up here in an effort to help others avoid the trap.
+On the plus side, this website acts as a place to come back to when we have forgotten something years later&amp;hellip;
+And if you&amp;rsquo;re wondering about the name, it&amp;rsquo;s a play on how Canadians say &amp;ldquo;about&amp;rdquo; - that and tellmeabout was taken.</description>
+    </item>
+    
+  </channel>
+</rss>

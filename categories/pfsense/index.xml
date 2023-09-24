@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>pfSense on Tell Me Aboot</title>
+    <link>https://georou.github.io/tellmeaboot/categories/pfsense/</link>
+    <description>Recent content in pfSense on Tell Me Aboot</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 25 Feb 2022 15:12:03 +1000</lastBuildDate><atom:link href="https://georou.github.io/tellmeaboot/categories/pfsense/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>pfSense LCDproc UPS Display</title>
+      <link>https://georou.github.io/tellmeaboot/post/2022/pfsense-lcdproc-ups-display/</link>
+      <pubDate>Fri, 25 Feb 2022 15:12:03 +1000</pubDate>
+      
+      <guid>https://georou.github.io/tellmeaboot/post/2022/pfsense-lcdproc-ups-display/</guid>
+      <description>&lt;p&gt;I noticed that the LCDproc package on pfSense doesn&amp;rsquo;t have a way to display UPS battery information. Well, what better way to dust off that PHP coding hat than to add it myself.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>PfSense AX88179 vs RTL8153 USB 3 Ethernet Compatibility</title>
+      <link>https://georou.github.io/tellmeaboot/post/2022/pfsense-ax88179-usb3-compatibility/</link>
+      <pubDate>Thu, 20 Jan 2022 19:36:09 +1000</pubDate>
+      
+      <guid>https://georou.github.io/tellmeaboot/post/2022/pfsense-ax88179-usb3-compatibility/</guid>
+      <description>&lt;p&gt;Trying to add another interface to a pfSense box but because it has run out of ports, I had to resort to using a USB 3 Ethernet dongle. Assuming (wrongly) that since it is based on the AX88179 chip and being somewhat older that it would be supported better. That wasn&amp;rsquo;t the case.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

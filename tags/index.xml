@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Tell Me Aboot</title>
+    <link>https://georou.github.io/tellmeaboot/tags/</link>
+    <description>Recent content in Tags on Tell Me Aboot</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 02 Aug 2022 22:40:32 +1000</lastBuildDate><atom:link href="https://georou.github.io/tellmeaboot/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Networking</title>
+      <link>https://georou.github.io/tellmeaboot/tags/networking/</link>
+      <pubDate>Tue, 02 Aug 2022 22:40:32 +1000</pubDate>
+      
+      <guid>https://georou.github.io/tellmeaboot/tags/networking/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pfsense</title>
+      <link>https://georou.github.io/tellmeaboot/tags/pfsense/</link>
+      <pubDate>Fri, 25 Feb 2022 15:12:03 +1000</pubDate>
+      
+      <guid>https://georou.github.io/tellmeaboot/tags/pfsense/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Security</title>
+      <link>https://georou.github.io/tellmeaboot/tags/security/</link>
+      <pubDate>Thu, 11 Nov 2021 21:33:43 +1000</pubDate>
+      
+      <guid>https://georou.github.io/tellmeaboot/tags/security/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>https://georou.github.io/tellmeaboot/tags/linux/</link>
+      <pubDate>Mon, 09 Aug 2021 19:37:15 +1000</pubDate>
+      
+      <guid>https://georou.github.io/tellmeaboot/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Auditing</title>
+      <link>https://georou.github.io/tellmeaboot/tags/auditing/</link>
+      <pubDate>Sun, 10 Sep 2017 08:01:44 +1100</pubDate>
+      
+      <guid>https://georou.github.io/tellmeaboot/tags/auditing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tips and tricks</title>
+      <link>https://georou.github.io/tellmeaboot/tags/tips-and-tricks/</link>
+      <pubDate>Sun, 26 Feb 2017 23:16:10 +1100</pubDate>
+      
+      <guid>https://georou.github.io/tellmeaboot/tags/tips-and-tricks/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

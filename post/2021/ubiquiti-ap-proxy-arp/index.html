@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Ubiquiti AP Proxy ARP Disruption - Tell Me Aboot</title>
+  <meta name="description" content="Without turning Proxy ARP on clients will get disconnected when a router sends am ARP request that isn&#39;t passed onto the WLAN side">
+  <meta name="author" content="georou"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "Tell Me Aboot",
+    
+    "url": "https:\/\/georou.github.io\/tellmeaboot"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/georou.github.io\/tellmeaboot"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/georou.github.io\/tellmeaboot",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/georou.github.io\/tellmeaboot\/post\/2021\/ubiquiti-ap-proxy-arp\/",
+          "name": "Ubiquiti ap proxy ARP disruption"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "georou"
+  },
+  "headline": "Ubiquiti AP Proxy ARP Disruption",
+  "description" : "Without turning Proxy ARP on clients will get disconnected when a router sends am ARP request that isn\u0027t passed onto the WLAN side",
+  "inLanguage" : "en",
+  "wordCount":  1418 ,
+  "datePublished" : "2021-08-09T19:37:15",
+  "dateModified" : "2021-08-09T19:37:15",
+  "image" : "https:\/\/georou.github.io\/tellmeaboot\/NeoneBay.jpg",
+  "keywords" : [ "Linux, Networking" ],
+  "mainEntityOfPage" : "https:\/\/georou.github.io\/tellmeaboot\/post\/2021\/ubiquiti-ap-proxy-arp\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/georou.github.io\/tellmeaboot",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/georou.github.io\/tellmeaboot\/NeoneBay.jpg",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="Ubiquiti AP Proxy ARP Disruption" />
+<meta property="og:description" content="Without turning Proxy ARP on clients will get disconnected when a router sends am ARP request that isn&#39;t passed onto the WLAN side">
+<meta property="og:image" content="https://georou.github.io/tellmeaboot/NeoneBay.jpg" />
+<meta property="og:url" content="https://georou.github.io/tellmeaboot/post/2021/ubiquiti-ap-proxy-arp/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Tell Me Aboot" />
+
+  <meta name="twitter:title" content="Ubiquiti AP Proxy ARP Disruption" />
+  <meta name="twitter:description" content="Without turning Proxy ARP on clients will get disconnected when a router sends am ARP request that isn&#39;t passed onto the WLAN side">
+  <meta name="twitter:image" content="https://georou.github.io/tellmeaboot/NeoneBay.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link href='https://georou.github.io/tellmeaboot/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta name="generator" content="Hugo 0.118.2">
+  <link rel="alternate" href="https://georou.github.io/tellmeaboot/index.xml" type="application/rss+xml" title="Tell Me Aboot"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://georou.github.io/tellmeaboot/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https://georou.github.io/tellmeaboot/css/highlight.min.css" /><link rel="stylesheet" href="https://georou.github.io/tellmeaboot/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://georou.github.io/tellmeaboot">Tell Me Aboot</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Blog" href="/tellmeaboot">Blog</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tellmeaboot/tags">Tags</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/tellmeaboot/page/about/">About</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Archives" href="/tellmeaboot/post">Archives</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    
+      <div class="avatar-container">
+        <div class="avatar-img-border">
+          <a title="Tell Me Aboot" href="https://georou.github.io/tellmeaboot">
+            <img class="avatar-img" src="https://georou.github.io/tellmeaboot/NeoneBay.jpg" alt="Tell Me Aboot" />
+          </a>
+        </div>
+      </div>
+    
+
+  </div>
+</nav>
+
+
+
+
+    
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+  
+  
+  
+
+
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    
+    <div class="intro-header no-img">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              
+                <h1>Ubiquiti AP Proxy ARP Disruption</h1>
+              
+              
+              
+              
+                <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on August 9, 2021
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;7&nbsp;minutes
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;1418&nbsp;words
+  
+  
+  
+</span>
+
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <p>A client was having issues with a real time video or voice streaming dropping out for a few seconds every 20 minutes - only via WiFi using a Ubiquiti AP-AC-LR access point.</p>
+<h1 id="preface">Preface</h1>
+<p>The issue was happening with Linux or Windows and different computers, so that comfortably rules out client side applications or hardware. The key point to remember here is that it happens every <strong>20 minutes</strong>, on the dot. It&rsquo;s also only <strong>real time</strong> streaming of ddata that is affected. Sites like youtube won&rsquo;t expose this since there&rsquo;s a client side buffer.</p>
+<p>The access point used was an up-to-date Ubiquiti AP-AC-LR - nothing too flash about the settings, all seemed pretty bog standard.</p>
+<p>Equipment:</p>
+<ul>
+<li>UBNT AP AC LR</li>
+<li>pfsense box</li>
+<li>Controller v6.2.26</li>
+<li>AP AC LR Firmware v5.43.36</li>
+</ul>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<p>Next point of call, working backwards from the clients. This might be an issue with the AP itself, the switch it&rsquo;s connected to, the power supply(POE powered), the router(pfSense), the NBN modem or further up the chain from there. Since nothing stands out to me at this point, I&rsquo;ll have to troubleshoot each of these.</p>
+<p>Low hanging fruit first in troubleshooting.</p>
+<ul>
+<li>Checking for packet drops or high latency over the internet showed nothing. ISP status doesn&rsquo;t have any ongoing issues and this problem has been happening for months at this point. Feels client equipment side due to the 20 minute timing.</li>
+<li>Nothing to note of error in the Ubiquiti controller page. All sane default options for the SSID.</li>
+<li>Since this AP is powered via POE from the switch, I checked if anything stood out there. Making sure to also set maximum power allowance. Same issue.</li>
+<li>Next was plugging in the AP to a different port. Same issue.</li>
+<li>I tried using the POE power splitter brick that comes with the AP in case it&rsquo;s still switch related. Same issue.</li>
+<li>Known good tested ethernet cable from the switch to the AP. Same issue.</li>
+<li>Logging into the router(pfSense) to check logs or for any errors. Nothing immediately stood out.</li>
+</ul>
+<h2 id="hardware-testing">Hardware testing</h2>
+<p>At this point, I&rsquo;m still not 100% confident on the Ubiquiti AP not being faulty and factory resetting it would be next on the cards. Some light googling around shows that this might be a common cause but nothing concrete.</p>
+<p>Since I had a spare TP-Link EAP245 v3 FW: 5.0.3 access point laying around I could try to rule out the equipment in between and be doubly sure the clients themselves are ok.</p>
+<p><strong>Success</strong> - replicating the setup on the TP-Link shows the issue has gone away. 20 minutes passed, all good. Video/Voice stream clear and uninterrupted. Switching back to the Ubiquiti setup has the same problem again.</p>
+<p>So that now rules out the internet connection, the NBN modem, the router and the switch(POE). Seems like a faulty AP? right? At first glance, yes, but we can dig deeper!</p>
+<p>Okay, let&rsquo;s factory reset it and try again&hellip;.nope, same issue.</p>
+<p>Throwing it out or sending it back for warranty seems to be tempting at this point - except, why is it like clock work at 20 minutes. If it was faulty, that would stand to reason it would be erratic.</p>
+<p><strong>What network mechanism starts/stops or resets at 20 minutes?</strong> I&rsquo;m sure a network engineer might have an inkling of an idea - but for me, I have to work from the ground up on this.</p>
+<h2 id="wireshark-and-tcpdump-to-the-rescue">Wireshark and tcpdump to the rescue</h2>
+<p><img src="/images/ubiquiti-capture-diagram.jpg" alt="Network Diagram"></p>
+<p>Since we&rsquo;re now dealing with a possible network issue, it&rsquo;s time to bust out the packet captures to watch on the wire.</p>
+<p>For convenience, I&rsquo;ll start a packet capture on the pfSense box, looking at the interface the AP is on. Marked, <code>Number 1.</code> Diagnostics &gt; Packet capture &gt; Enable promiscuous mode &gt; LAN &gt; count: 0 &gt; Do reverse DNS lookup &raquo; Start</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Source            Destination           Protocol Length Info
+</span></span><span class="line"><span class="cl">PFSense:FF:FF     Broadcast             ARP      42  Who has 192.168.100.100? Tell 192.168.100.1
+</span></span><span class="line"><span class="cl">PFSense:FF:FF     Broadcast             ARP      42  Who has 192.168.100.100? Tell 192.168.100.1
+</span></span><span class="line"><span class="cl">PFSense:FF:FF     Broadcast             ARP      42  Who has 192.168.100.100? Tell 192.168.100.1
+</span></span><span class="line"><span class="cl">PFSense:FF:FF     Broadcast             ARP      42  Who has 192.168.100.100? Tell 192.168.100.1
+</span></span><span class="line"><span class="cl">PFSense:FF:FF     Broadcast             ARP      42  Who has 192.168.100.100? Tell 192.168.100.1
+</span></span><span class="line"><span class="cl">PFSense:FF:FF     Broadcast             ARP      42  Who has 192.168.100.100? Tell 192.168.100.1
+</span></span><span class="line"><span class="cl">PFSense:FF:FF     Broadcast             ARP      42  Who has 192.168.100.100? Tell 192.168.100.1
+</span></span><span class="line"><span class="cl">Client:FF:FE      PFSense:FF:FF         ARP      56  Who has 192.168.100.1? Tell 192.168.100.100
+</span></span><span class="line"><span class="cl">PFSense:FF:FF     Client:FF:FE          ARP      42  192.168.100.1 is at 00:0d:b9:48:5f:fe
+</span></span></code></pre></div><p>When the interruption occurs using the client machine, I notice that traffic to the 192.168.100.100 stops and the router is sending out multiple ARP requests just before for the client that aren&rsquo;t being answered. Then the interruption occurs, and finally traffic resumes after the device sends it&rsquo;s own ARP request for the gateway. Interesting! so the ARP entry isn&rsquo;t getting refresh on the router.</p>
+<p>Back to the the pfSense router, Diagnostics &gt; ARP Table. Filtering for the computer, when it first requests an IP and connects to the network, the default expire time is <strong>20 minutes</strong>&hellip;.looks familiar! Turns out, 20 minutes is the default timeout in pfSense/freeBSD.</p>
+<p><img src="/images/pfsense-arp-1.jpg" alt="pfSense ARP Table"></p>
+<p>If the ARP entry is expiring from the router, that would explain the traffic flow interruption. You can also see that traffic restores once the client sends an ARP itself, looking for the gateway. So why doesn&rsquo;t the client respond to the router&rsquo;s requests at the beginning?</p>
+<p>Let&rsquo;s check a capture from the client&rsquo;s end, Number 4, to check if they even received the ARP request. <strong>It doesn&rsquo;t</strong>. So, the issue looks like the AP again.</p>
+<p>Next, I&rsquo;m going to packet capture using tcpdump built into the Ubiquiti AP to see if the ARP actually gets to the physical interface side, Number 2. Enable SSH access via Ubiquiti controller: System &gt; Device SSH Authentication &gt; Enable Device SSH Authentication and note the username and password. <a href="https://help.ui.com/hc/en-us/articles/227129127-UniFi-Methods-for-Capturing-Useful-Debug-Information">Using Ubiquiti&rsquo;s tcpdump debug page as a guide</a>, we want to find the physical interface to listen on. Find the interfaces, <code>ip link</code> and <code>iwconfig</code> to sort them, usually marked EthX with a bridge interface for the WLAN side; AthX. We want to first check the interface: Eth0</p>
+<p>After logging in, issue the following cmd: <code>tcpdump -i eth0 arp</code> or follow above link to save or pipe it to wireshark.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ARP, Request who-has 192.168.100.100 tell 192.168.100.1, length 42
+</span></span><span class="line"><span class="cl">ARP, Request who-has 192.168.100.100 tell 192.168.100.1, length 42
+</span></span><span class="line"><span class="cl">ARP, Request who-has 192.168.100.100 tell 192.168.100.1, length 42
+</span></span><span class="line"><span class="cl">ARP, Request who-has 192.168.100.100 tell 192.168.100.1, length 42
+</span></span><span class="line"><span class="cl">ARP, Request who-has 192.168.100.100 tell 192.168.100.1, length 42
+</span></span><span class="line"><span class="cl">ARP, Request who-has 192.168.100.100 tell 192.168.100.1, length 42
+</span></span><span class="line"><span class="cl">ARP, Request who-has 192.168.100.100 tell 192.168.100.1, length 42
+</span></span></code></pre></div><p>This shows that the ARP request is actually getting to the interface. That rules out anything along the path to the AP. It also shows the amount of requests the router tries before the entry is expired. It isn&rsquo;t just once.</p>
+<p>Trying to now capture from Number 3, which is the interface on the WLAN side - <code>tcpdump -i ath0 arp</code> shows that the ARP doesn&rsquo;t make it across. Here&rsquo;s our ground zero. Between the two interfaces.</p>
+<p>I recall seeing a Proxy ARP option in the wireless settings in the Ubiquiti controller for the network. But by default it is off. Makes sense as you don&rsquo;t really want broadcasts flooding over to the WLAN side - for performance reasons.</p>
+<p><img src="/images/proxy-arp-toggle.jpg" alt="Proxy ARP Option"></p>
+<p>Also interestingly, this is the new GUI that Ubiquiti released and the older one had an option called <strong>&ldquo;Block LAN to WLAN multi/broadcast&rdquo;</strong>. Looks like the Proxy ARP options replaces that older one.</p>
+<p><strong>Turning on Proxy ARP, has fixed the issues</strong>. It does what it says on the tin. If the AP knows of a device with that IP on the WLAN side, it will proxy an ARP reply to the device that requested it, thus saving not having to send it out over the air.</p>
+<p><code>Mystery solved.</code></p>
+<p>But why did the TP-Link AP work out of the box? Doing a packet capture on the client side while connected to it shows that by default it passes on broadcasts compared to the Ubiquiti. There isn&rsquo;t an option to disable it as of writing this.</p>
+<p>There&rsquo;s also another consideration with using devices like the TP-Link that floods the air from the LAN side(aside from performance). From a security posture, this also reveals MAC addresses and from that you can glean what devices are on the LAN network using a simple wifi packet capture. Tools like kismet spring to mind. Want to see when someone is home? fire up kismet, see if their phone/devices is connected, done. This type of meta data is valuable. All depends how far down the security rabbit hole you&rsquo;re willing to go.</p>
+
+        
+          <div class="blog-tags">
+            
+              <a href="https://georou.github.io/tellmeaboot/tags/linux/">Linux</a>&nbsp;
+            
+              <a href="https://georou.github.io/tellmeaboot/tags/networking/">Networking</a>&nbsp;
+            
+          </div>
+        
+
+        
+
+        
+          
+            
+          
+
+          
+                  <h4 class="see-also">See also</h4>
+                  <ul>
+                
+                
+                    <li><a href="/tellmeaboot/post/2022/juniper-ssh-preauth-error/">Juniper Switch SSH &#39;Expecting SSH2_MSG_KEX_ECDH_REPLY&#39; Error</a></li>
+                
+                    <li><a href="/tellmeaboot/post/2022/pfsense-ax88179-usb3-compatibility/">PfSense AX88179 vs RTL8153 USB 3 Ethernet Compatibility</a></li>
+                
+                    <li><a href="/tellmeaboot/post/2021/client-to-nvr-isolated-cctv/">Client to NVR Isolated CCTV with VLAN and a Virtual Machine</a></li>
+                
+                    <li><a href="/tellmeaboot/post/2021/cisco-sg300-port-security-and-mac-filtering/">Cisco SG300 Port Security and Static Mac Filtering</a></li>
+                
+                    <li><a href="/tellmeaboot/post/2017/ip-camera-security-audit/">How To Access An IP Camera&#39;s Embedded Linux OS Through A Serial UART/TTL Port</a></li>
+                
+              </ul>
+
+          
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://georou.github.io/tellmeaboot/post/2021/cisco-sg300-port-security-and-mac-filtering/" data-toggle="tooltip" data-placement="top" title="Cisco SG300 Port Security and Static Mac Filtering">&larr; Previous Post</a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="https://georou.github.io/tellmeaboot/post/2021/client-to-nvr-isolated-cctv/" data-toggle="tooltip" data-placement="top" title="Client to NVR Isolated CCTV with VLAN and a Virtual Machine">Next Post &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+
+    </div>
+  </div>
+</div>
+
+      
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="https://github.com/georou" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              <a href="tellmeaboot.com">georou</a>
+            
+          
+
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2022
+          
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://georou.github.io/tellmeaboot">Tell Me Aboot</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="https://gohugo.io">Hugo v0.118.2</a> powered &nbsp;&bull;&nbsp; Theme <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> adapted from <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
+		  &nbsp;&bull;&nbsp; If you break anything because of reading here, that's on you.
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer><script src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="https://georou.github.io/tellmeaboot/js/main.js"></script>
+<script src="https://georou.github.io/tellmeaboot/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://georou.github.io/tellmeaboot/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+
+
+
+    
+  </body>
+</html>
+

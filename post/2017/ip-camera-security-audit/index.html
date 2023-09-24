@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>How To Access An IP Camera&#39;s Embedded Linux OS Through A Serial UART/TTL Port - Tell Me Aboot</title>
+  <meta name="description" content="How To Get Inside an IP Camera and Gain Access to a Root Console for Security Auditing">
+  <meta name="author" content="georou"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "Tell Me Aboot",
+    
+    "url": "https:\/\/georou.github.io\/tellmeaboot"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/georou.github.io\/tellmeaboot"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/georou.github.io\/tellmeaboot",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/georou.github.io\/tellmeaboot\/post\/2017\/ip-camera-security-audit\/",
+          "name": "How to access an IP camera\u0027s embedded linux os through a serial uart ttl port"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "georou"
+  },
+  "headline": "How To Access An IP Camera\u0027s Embedded Linux OS Through A Serial UART\/TTL Port",
+  "description" : "How To Get Inside an IP Camera and Gain Access to a Root Console for Security Auditing",
+  "inLanguage" : "en",
+  "wordCount":  1879 ,
+  "datePublished" : "2017-09-10T08:01:44",
+  "dateModified" : "2017-09-10T08:01:44",
+  "image" : "https:\/\/georou.github.io\/tellmeaboot\/NeoneBay.jpg",
+  "keywords" : [ "Auditing, Security, Linux" ],
+  "mainEntityOfPage" : "https:\/\/georou.github.io\/tellmeaboot\/post\/2017\/ip-camera-security-audit\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/georou.github.io\/tellmeaboot",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/georou.github.io\/tellmeaboot\/NeoneBay.jpg",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="How To Access An IP Camera&#39;s Embedded Linux OS Through A Serial UART/TTL Port" />
+<meta property="og:description" content="How To Get Inside an IP Camera and Gain Access to a Root Console for Security Auditing">
+<meta property="og:image" content="https://georou.github.io/tellmeaboot/NeoneBay.jpg" />
+<meta property="og:url" content="https://georou.github.io/tellmeaboot/post/2017/ip-camera-security-audit/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Tell Me Aboot" />
+
+  <meta name="twitter:title" content="How To Access An IP Camera&#39;s Embedded Linux OS Through A Serial …" />
+  <meta name="twitter:description" content="How To Get Inside an IP Camera and Gain Access to a Root Console for Security Auditing">
+  <meta name="twitter:image" content="https://georou.github.io/tellmeaboot/NeoneBay.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link href='https://georou.github.io/tellmeaboot/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta name="generator" content="Hugo 0.118.2">
+  <link rel="alternate" href="https://georou.github.io/tellmeaboot/index.xml" type="application/rss+xml" title="Tell Me Aboot"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://georou.github.io/tellmeaboot/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https://georou.github.io/tellmeaboot/css/highlight.min.css" /><link rel="stylesheet" href="https://georou.github.io/tellmeaboot/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://georou.github.io/tellmeaboot">Tell Me Aboot</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Blog" href="/tellmeaboot">Blog</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tellmeaboot/tags">Tags</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/tellmeaboot/page/about/">About</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Archives" href="/tellmeaboot/post">Archives</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    
+      <div class="avatar-container">
+        <div class="avatar-img-border">
+          <a title="Tell Me Aboot" href="https://georou.github.io/tellmeaboot">
+            <img class="avatar-img" src="https://georou.github.io/tellmeaboot/NeoneBay.jpg" alt="Tell Me Aboot" />
+          </a>
+        </div>
+      </div>
+    
+
+  </div>
+</nav>
+
+
+
+
+    
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+  
+  
+  
+
+
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    
+    <div class="intro-header no-img">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              
+                <h1>How To Access An IP Camera&#39;s Embedded Linux OS Through A Serial UART/TTL Port</h1>
+              
+              
+              
+              
+                <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on September 10, 2017
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;9&nbsp;minutes
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;1879&nbsp;words
+  
+  
+  
+</span>
+
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <p>IP Cameras and Internet of Things in this day and age mostly have serial ports available on their PCB that will allow you to gain root access. They nearly all run embedded Linux and so, with some electronics and Linux knowledge, we can have a look around in the OS.</p>
+<p><strong>Note, this isn’t for the faint hearted. If you can’t afford to end up with a paper weight, don’t attempt this. Suppling wrong voltages or connecting the wrong way is a fast way to see blue smoke.</strong></p>
+<p>While this might work for some devices, it might not for others. The process is the similar regardless.</p>
+<h3 id="tools-youll-need">Tools you’ll need</h3>
+<ul>
+<li>Bread Board jumper leads:</li>
+<li>3.3V UART/TTL Serial to USB Converter:</li>
+<li>Multi Meter or Digital Oscilloscope</li>
+<li>Linux – but easily do-able with Windows or Mac</li>
+</ul>
+<h3 id="crack-it-open-like-an-egg">Crack it open like an egg!</h3>
+<p>We’ll be looking at this IP Camera that is sold under different brands but is essentially the same innards. It has an interface available on port 80 and other features you&rsquo;d expect from an IP camera - SMTP, remote viewing etc.</p>
+<p><img src="/images/ip-camera-pics/ip-camera-stock.jpg" alt="IP Camera Stock"></p>
+<p>First step is to disassemble the outer housing. Once it’s out of the housing, the lower half simply twists off. Don’t forget to hold the cable stationary as you unscrew, otherwise it will twist the wire ends in the camera and possibly snap them.</p>
+<p><img src="/images/ip-camera-pics/ip-camera-housing.jpg" alt="IP Camera Opened"></p>
+<h3 id="looking-for-the-serial-uart-port">Looking for the Serial UART port</h3>
+<p>Now we need to go ahead find our interface port. Typically with these types of devices it will be using a <a href="https://en.wikipedia.org/wiki/Universal_asynchronous_receiver/transmitter">Serial UART</a> port. It’s important to have an idea how it works, I suggest reading the page over at <a href="https://www.sparkfun.com/tutorials/215">SparkFun&rsquo;s website.</a></p>
+<p>We’re looking for a 3-4 pins, exposed on the board. This one looks like a likely candidate:</p>
+<p><img src="/images/ip-camera-pics/ip-camera-open-uartport.jpg" alt="UART Close Up"></p>
+<p>Inspecting it further, we can see one pin (P4) is ground. The other 3 will be transmit (Tx), Receive (Rx) and Vcc. It’s always good to confirm the ground pin is in indeed connected by using a multi meter and testing between another known ground source. This is done using the continuity setting. I suggest using a close ground point.</p>
+<p>This could be the end if it isn’t a serial port. There’s no guarantee it is until we try it. There’s nothing else that resembles what we need on the PCB.</p>
+<h3 id="probe-that-port">Probe that port!</h3>
+<p>When dealing with Serial TTL/UART, it commonly operates on a logic level of 3.3V. There is also 5V and 1.8V - albeit not as common.
+We need to establish what level this operates on so we can select an appropriate Serial-to-USB converter. <strong>This step is extremely important because putting 5V on a 3.3V logic bus will likely do damage.</strong></p>
+<p>We have a few choices on how we determine the voltage used. I’ll show you one way to do it using a multi meter. You can also use an Oscilloscope which will also be handy to determine the baud rate later on. But it isn’t completely needed as you can get the same result with trial and error.</p>
+<p>Turn the device on and using your multi meter, negative lead on the known ground pin and use positive to probe the other pins while the device is powering up. It’s best to test just as you power the device up since the serial traffic might stop once it has booted. In this case, it’s most likely a 3.3V logic level.</p>
+<p><img src="/images/ip-camera-pics/ip-camera-open-multimeter.jpg" alt="Multimeter Voltage Check"></p>
+<p>While we&rsquo;re here, we can try to determine which pin could be Tx and Rx. Reboot if necessary each time since the boot period is when the transmit pin will be doing most of the work. Using the probe on ground and selecting a candidate pin, observe the voltage level. It is normally pulled high to rough 3.3V and will drop to 0V as the bits are being transmitted. You&rsquo;ll need to have a fairly good multi meter for this as they can be slow at reading rapid changes in voltage and since they measure an average, you wont see much if any change.</p>
+<p>Power off for now.</p>
+<h3 id="bring-out-the-converter">Bring out the converter</h3>
+<p>To communicate with the serial port of the camera, we need to use a UART/TTL Serial to USB converter. These can be found from Amazon, eBay or Adafruit (linked above). There are a few different manufacturers, picking the right one is tricky. There&rsquo;s a plethora out there and you do yourself a disservice not looking into the specifics of them.</p>
+<p>The key features I suggest: 5V and 3.3V selectable - This saves you buying multiple converters. A DTR lead - Useful for Arduino tinkering and allows you upload to it without manually resetting.</p>
+<p>If you’ve found or are using an FTDI converter, there has been some issues using it on Windows (since 2016). FTDI in an effort to stop clones, made the Windows driver inject random data while using it. Hackaday have some more info: <a href="https://hackaday.com/tag/ftdi-gate">FTDI Gate</a>. I suggest either not using an FTDI with Windows or using it on Linux to be safe.</p>
+<p>Now that we know where the port is and that it’s 3.3V logic, we need to rig up a way to connect it to our converter. I used some bread board jumper leads since they’re the easiest to manipulate. <strong>Be careful you don’t short them together pushing them too far on the underside.</strong></p>
+<p><img src="/images/ip-camera-pics/ip-camera-cables.jpg" alt="Serial UART to converter connection"></p>
+<p>Figuring out which pin is Rx and Tx is just trial and error at this point. You’ll find most often that, Vcc is on the furthest pin from GND, with Tx and Rx in the middle. Focus on the two middle pins first. In this case, it is:</p>
+<pre><code>P1:Vcc - P2:Tx – P3:Rx – P4:GND
+</code></pre>
+<p><strong>It’s vitally important NOT to connect the positive lead from the serial converter to the device. Since we’re powering up the camera via its power supply, we don’t need the converters power. If you forget and connect it, expect to see blue smoke. <em>You’ve been warned.</em></strong></p>
+<p>Remember, Tx and Rx need to go on the opposite end for both, so that Tx transmits <strong>into</strong> the Rx receiver.</p>
+<h3 id="time-for-the-console">Time for the console</h3>
+<p>With the ends connected to your serial converter, plug it in to your PC. We’ll be using Linux for this but you can do it using Windows or Mac.</p>
+<p>There’s a range of different serial emulators to pick from, we’ll be using <code>minicom</code> since I’ve had the most luck with it on lots of other applications. It should be available in your distros repository.</p>
+<p>Start up <code># minicom</code>. We’ll need to adjust it to the baud rate of the camera to be able to communicate with it. More info on baud rates <a href="https://learn.sparkfun.com/tutorials/serial-communication/rules-of-serial">here.</a> Since this time we’re not using an oscilloscope, we’ll have to use trial and error to get it right.</p>
+<p><img src="/images/ip-camera-pics/minicom-config1.jpg" alt="minicom config"></p>
+<p><img src="/images/ip-camera-pics/minicom-config.jpg" alt="minicom config"></p>
+<p>Bring up the setup menu with <code>Ctrl + Z then o</code> (the letter). Select: <code>Serial port setup</code> then press <code>E</code>. A good guess would be to start with 115200 baud rate and go down from there. You’ll most likely need to select your parity, data and stop bits too. The normal standard is 8N1 - I suggest trying Q and R preset first and then adjusting it from there. Read up on those different settings in the previous link.</p>
+<p>Enter to exit, optionally save or exit back to the main window in minicom. It will now be waiting to receive data through /dev/ttyUSB0. Power on the camera and take a look:</p>
+<p><img src="/images/ip-camera-pics/console-wrong-baud-rate.jpg" alt="Serial console wrong baud rate"></p>
+<p>If you get random junk all over the terminal, you haven’t got the right baud rate and/or bits. You’ll know you’re close to the correct rate when you start seeing legible or semi-legible words. You’ll need to probably reboot your device each time you try since it might not be writing anything to serial once it has fully booted.</p>
+<h3 id="were-in-like-flynn--sorry-dave-im-pinching-your-saying">We’re in like Flynn! – Sorry Dave, I’m pinching your saying!</h3>
+<p>Once you’ve got the right rate, in my case it was <code>115200 8N1</code>, you should be able to see what is going on in the serial terminal. This particular camera is using <a href="http://www.denx.de/wiki/U-Boot">U-Boot</a> as its bootloader. I also noticed at the start it said to hit any button to interrupt – noted for later.
+After it boots, we are presented with a login prompt. The easy default passwords and login names don’t work. A possible dead end! But we can go around it. We essentially now want to change the bootloader’s kernel line so that it drops us into single user mode.</p>
+<p>Reboot and hit space to interrupt the boot up sequence and get into U-Boot’s bootloader prompt.</p>
+<p>Going with help to start off will give you an idea what you can do. Looking over U-Boot’s documentation, using <code>printenv</code> will give us what we need</p>
+<p><img src="/images/ip-camera-pics/printenv.jpg" alt="u-boot printenv"></p>
+<p>A lot of good information can be seen here. In particular we’re interested in the boot arguments line. As with any nix operating system, inserting single or 1 at the end should do the trick for single user mode – we need a root shell.</p>
+<p><strong>This is one of those spots where it’s easy to misconfigure the boot parameters and end up with a non-booting device. ALWAYS make a copy of what was there before – by now this should be usual practice.</strong></p>
+<p>Copy the existing bootargs and then:</p>
+<pre><code>setenv bootargs 'exisiting stuff with single at the end'
+</code></pre>
+<p>Make note of the single quotes!!</p>
+<p><img src="/images/ip-camera-pics/saveenv.jpg" alt="u-boot prompt"></p>
+<p>Once you check it’s worked with <code>printenv</code> again, go ahead and <code>saveenv</code> then <code>reset</code>.
+Mine is cutoff on the right side, though. But it&rsquo;s there</p>
+<h3 id="i-am-root">I am root</h3>
+<p>If all went well, you should be dropped into a root shell. Check with <code>id</code>.</p>
+<p><img src="/images/ip-camera-pics/id-root.jpg" alt="root access gained"></p>
+<p>From here we can check the passwd file and pinch the passwords for cracking them later on with John The Ripper.</p>
+<p>Since we’re in single user mode, the normal functions of the camera won’t be operational, while we can have a poke around now, it’s a little better to do so when the system is running in its normal mode.</p>
+<p>Add ourselves to the local users, but with a twist. We’re going to change our UID to that of root. Now that when we login, we’ll be using a root account, but not the existing one. Good idea to leave everything untouched.  I like to go with audit as a username:</p>
+<p><img src="/images/ip-camera-pics/passwd.jpg" alt="passwd file"></p>
+<h3 id="time-to-audit">Time to audit</h3>
+<p>Reboot and login with the username you picked and password. Now that we’re in, we can have a look around. Just as something simple to leave you with, running <code>netstat –tulpn</code> reveals that there is a telnet daemon running on port 28 (Telnet usual runs on port 23). Why have telent open? Nothing about it in the normal GUI. Another reason why we need to be weary of these devices. Could be innocent, a mistake or not.</p>
+<p><img src="/images/ip-camera-pics/netstat.jpg" alt="id is root"></p>
+<h2 id="conclusion">Conclusion</h2>
+<p>This is just one step in an audit process. Finding the open telnet would have been possible with an <code>nmap</code> scan of course and that&rsquo;s where I start from. But then we wouldn’t have any login details. I’ll cover <code>nmap</code> scanning as a method of gaining access in a future post where we do have login details. There’s also using <code>tcpdump</code> to log everything that the camera tries to send on the network, another future post.</p>
+<p>Hopefully this has sparked that spark in you to be interested in opening up IoT type devices and checking them yourself.</p>
+
+        
+          <div class="blog-tags">
+            
+              <a href="https://georou.github.io/tellmeaboot/tags/auditing/">Auditing</a>&nbsp;
+            
+              <a href="https://georou.github.io/tellmeaboot/tags/security/">Security</a>&nbsp;
+            
+              <a href="https://georou.github.io/tellmeaboot/tags/linux/">Linux</a>&nbsp;
+            
+          </div>
+        
+
+        
+
+        
+          
+            
+          
+
+          
+                  <h4 class="see-also">See also</h4>
+                  <ul>
+                
+                
+                    <li><a href="/tellmeaboot/post/2021/client-to-nvr-isolated-cctv/">Client to NVR Isolated CCTV with VLAN and a Virtual Machine</a></li>
+                
+                    <li><a href="/tellmeaboot/post/2021/ubiquiti-ap-proxy-arp/">Ubiquiti AP Proxy ARP Disruption</a></li>
+                
+                    <li><a href="/tellmeaboot/post/2017/linux-serial-virsh-console/">Virsh Serial Console Size and Wrapping Fix</a></li>
+                
+                    <li><a href="/tellmeaboot/post/2017/local-kvm-kickstart-file/">How To Use A Local Kickstart File For KVM</a></li>
+                
+              </ul>
+
+          
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://georou.github.io/tellmeaboot/post/2017/linux-serial-virsh-console/" data-toggle="tooltip" data-placement="top" title="Virsh Serial Console Size and Wrapping Fix">&larr; Previous Post</a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="https://georou.github.io/tellmeaboot/post/2021/cisco-sg300-port-security-and-mac-filtering/" data-toggle="tooltip" data-placement="top" title="Cisco SG300 Port Security and Static Mac Filtering">Next Post &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+
+    </div>
+  </div>
+</div>
+
+      
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="https://github.com/georou" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              <a href="tellmeaboot.com">georou</a>
+            
+          
+
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2022
+          
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://georou.github.io/tellmeaboot">Tell Me Aboot</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="https://gohugo.io">Hugo v0.118.2</a> powered &nbsp;&bull;&nbsp; Theme <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> adapted from <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
+		  &nbsp;&bull;&nbsp; If you break anything because of reading here, that's on you.
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer><script src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="https://georou.github.io/tellmeaboot/js/main.js"></script>
+<script src="https://georou.github.io/tellmeaboot/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://georou.github.io/tellmeaboot/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+
+
+
+    
+  </body>
+</html>
+

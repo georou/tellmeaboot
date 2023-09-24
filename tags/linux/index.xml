@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux on Tell Me Aboot</title>
+    <link>https://georou.github.io/tellmeaboot/tags/linux/</link>
+    <description>Recent content in Linux on Tell Me Aboot</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 09 Aug 2021 19:37:15 +1000</lastBuildDate><atom:link href="https://georou.github.io/tellmeaboot/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Ubiquiti AP Proxy ARP Disruption</title>
+      <link>https://georou.github.io/tellmeaboot/post/2021/ubiquiti-ap-proxy-arp/</link>
+      <pubDate>Mon, 09 Aug 2021 19:37:15 +1000</pubDate>
+      
+      <guid>https://georou.github.io/tellmeaboot/post/2021/ubiquiti-ap-proxy-arp/</guid>
+      <description>&lt;p&gt;A client was having issues with a real time video or voice streaming dropping out for a few seconds every 20 minutes - only via WiFi using a Ubiquiti AP-AC-LR access point.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>How To Access An IP Camera&#39;s Embedded Linux OS Through A Serial UART/TTL Port</title>
+      <link>https://georou.github.io/tellmeaboot/post/2017/ip-camera-security-audit/</link>
+      <pubDate>Sun, 10 Sep 2017 08:01:44 +1100</pubDate>
+      
+      <guid>https://georou.github.io/tellmeaboot/post/2017/ip-camera-security-audit/</guid>
+      <description>&lt;p&gt;IP Cameras and Internet of Things in this day and age mostly have serial ports available on their PCB that will allow you to gain root access. They nearly all run embedded Linux and so, with some electronics and Linux knowledge, we can have a look around in the OS.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Virsh Serial Console Size and Wrapping Fix</title>
+      <link>https://georou.github.io/tellmeaboot/post/2017/linux-serial-virsh-console/</link>
+      <pubDate>Sun, 26 Feb 2017 23:16:10 +1100</pubDate>
+      
+      <guid>https://georou.github.io/tellmeaboot/post/2017/linux-serial-virsh-console/</guid>
+      <description>&lt;p&gt;If you’ve used Virsh to access a serial console on a Linux VM, you would have noticed that text gets cut off or doesn’t wrap properly. This is because the serial console hasn’t got any bounds set.  I’ll show you how to fix it.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Square Text When SSH X11 Forwarding CentOS</title>
+      <link>https://georou.github.io/tellmeaboot/post/2017/x11-forwarding-square-text-fix/</link>
+      <pubDate>Fri, 03 Feb 2017 04:56:24 +1100</pubDate>
+      
+      <guid>https://georou.github.io/tellmeaboot/post/2017/x11-forwarding-square-text-fix/</guid>
+      <description>&lt;p&gt;Why does my text show up as square characters when I forward an X11 session via SSH with CentOS? I&amp;rsquo;ll show you how to fix it and why it happens.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>How To Use A Local Kickstart File For KVM</title>
+      <link>https://georou.github.io/tellmeaboot/post/2017/local-kvm-kickstart-file/</link>
+      <pubDate>Thu, 05 Jan 2017 18:16:22 +1100</pubDate>
+      
+      <guid>https://georou.github.io/tellmeaboot/post/2017/local-kvm-kickstart-file/</guid>
+      <description>&lt;p&gt;Using a local kickstart file can be tricky at first without knowing the proper method. Many guides just copy and paste using vsftp. Here&amp;rsquo;s how to do it locally.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

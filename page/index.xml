@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pages on Tell Me Aboot</title>
+    <link>https://georou.github.io/tellmeaboot/page/</link>
+    <description>Recent content in Pages on Tell Me Aboot</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 01 Jan 2017 04:44:00 +1100</lastBuildDate><atom:link href="https://georou.github.io/tellmeaboot/page/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About</title>
+      <link>https://georou.github.io/tellmeaboot/page/about/</link>
+      <pubDate>Sun, 01 Jan 2017 04:44:00 +1100</pubDate>
+      
+      <guid>https://georou.github.io/tellmeaboot/page/about/</guid>
+      <description>Any time I come across something neat or waste hours on troubleshooting only to find it&amp;rsquo;s something unforeseen or obscure - I&amp;rsquo;ll throw it up here in an effort to help others avoid the trap.
+On the plus side, this website acts as a place to come back to when we have forgotten something years later&amp;hellip;
+And if you&amp;rsquo;re wondering about the name, it&amp;rsquo;s a play on how Canadians say &amp;ldquo;about&amp;rdquo; - that and tellmeabout was taken.</description>
+    </item>
+    
+  </channel>
+</rss>

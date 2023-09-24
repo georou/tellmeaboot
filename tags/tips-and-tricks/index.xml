@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>tips and tricks on Tell Me Aboot</title>
+    <link>https://georou.github.io/tellmeaboot/tags/tips-and-tricks/</link>
+    <description>Recent content in tips and tricks on Tell Me Aboot</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 26 Feb 2017 23:16:10 +1100</lastBuildDate><atom:link href="https://georou.github.io/tellmeaboot/tags/tips-and-tricks/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Virsh Serial Console Size and Wrapping Fix</title>
+      <link>https://georou.github.io/tellmeaboot/post/2017/linux-serial-virsh-console/</link>
+      <pubDate>Sun, 26 Feb 2017 23:16:10 +1100</pubDate>
+      
+      <guid>https://georou.github.io/tellmeaboot/post/2017/linux-serial-virsh-console/</guid>
+      <description>&lt;p&gt;If you’ve used Virsh to access a serial console on a Linux VM, you would have noticed that text gets cut off or doesn’t wrap properly. This is because the serial console hasn’t got any bounds set.  I’ll show you how to fix it.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Using a Chromecast with an Analog TV</title>
+      <link>https://georou.github.io/tellmeaboot/post/2017/chromecast-hdmi-to-composite-converter/</link>
+      <pubDate>Mon, 20 Feb 2017 02:18:52 +1100</pubDate>
+      
+      <guid>https://georou.github.io/tellmeaboot/post/2017/chromecast-hdmi-to-composite-converter/</guid>
+      <description>&lt;p&gt;Using a Chromecast is an excellent, simple and convenient way to watch Netflix, YouTube or even cast your local media to a TV. But what if you only have a spare analog TV lying around? Using a HDMI to Composite converter you can bring that TV back to life for under $25!&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

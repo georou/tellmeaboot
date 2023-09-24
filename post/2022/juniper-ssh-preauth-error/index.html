@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Juniper Switch SSH &#39;Expecting SSH2_MSG_KEX_ECDH_REPLY&#39; Error - Tell Me Aboot</title>
+  <meta name="description" content="SSH to Juniper switch causes preauth error with misaligned ciphers">
+  <meta name="author" content="georou"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "Tell Me Aboot",
+    
+    "url": "https:\/\/georou.github.io\/tellmeaboot"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/georou.github.io\/tellmeaboot"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/georou.github.io\/tellmeaboot",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/georou.github.io\/tellmeaboot\/post\/2022\/juniper-ssh-preauth-error\/",
+          "name": "Juniper switch SSH \u0027 expecting ssh2 msg kex ecdh reply\u0027 error"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "georou"
+  },
+  "headline": "Juniper Switch SSH \u0027Expecting SSH2_MSG_KEX_ECDH_REPLY\u0027 Error",
+  "description" : "SSH to Juniper switch causes preauth error with misaligned ciphers",
+  "inLanguage" : "en",
+  "wordCount":  1794 ,
+  "datePublished" : "2022-08-02T22:40:32",
+  "dateModified" : "2022-08-02T22:40:32",
+  "image" : "https:\/\/georou.github.io\/tellmeaboot\/NeoneBay.jpg",
+  "keywords" : [ "Networking" ],
+  "mainEntityOfPage" : "https:\/\/georou.github.io\/tellmeaboot\/post\/2022\/juniper-ssh-preauth-error\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/georou.github.io\/tellmeaboot",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/georou.github.io\/tellmeaboot\/NeoneBay.jpg",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="Juniper Switch SSH &#39;Expecting SSH2_MSG_KEX_ECDH_REPLY&#39; Error" />
+<meta property="og:description" content="SSH to Juniper switch causes preauth error with misaligned ciphers">
+<meta property="og:image" content="https://georou.github.io/tellmeaboot/NeoneBay.jpg" />
+<meta property="og:url" content="https://georou.github.io/tellmeaboot/post/2022/juniper-ssh-preauth-error/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Tell Me Aboot" />
+
+  <meta name="twitter:title" content="Juniper Switch SSH &#39;Expecting SSH2_MSG_KEX_ECDH_REPLY&#39; Error" />
+  <meta name="twitter:description" content="SSH to Juniper switch causes preauth error with misaligned ciphers">
+  <meta name="twitter:image" content="https://georou.github.io/tellmeaboot/NeoneBay.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link href='https://georou.github.io/tellmeaboot/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta name="generator" content="Hugo 0.118.2">
+  <link rel="alternate" href="https://georou.github.io/tellmeaboot/index.xml" type="application/rss+xml" title="Tell Me Aboot"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://georou.github.io/tellmeaboot/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https://georou.github.io/tellmeaboot/css/highlight.min.css" /><link rel="stylesheet" href="https://georou.github.io/tellmeaboot/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://georou.github.io/tellmeaboot">Tell Me Aboot</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Blog" href="/tellmeaboot">Blog</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tellmeaboot/tags">Tags</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/tellmeaboot/page/about/">About</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Archives" href="/tellmeaboot/post">Archives</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    
+      <div class="avatar-container">
+        <div class="avatar-img-border">
+          <a title="Tell Me Aboot" href="https://georou.github.io/tellmeaboot">
+            <img class="avatar-img" src="https://georou.github.io/tellmeaboot/NeoneBay.jpg" alt="Tell Me Aboot" />
+          </a>
+        </div>
+      </div>
+    
+
+  </div>
+</nav>
+
+
+
+
+    
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+  
+  
+  
+
+
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    
+    <div class="intro-header no-img">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              
+                <h1>Juniper Switch SSH &#39;Expecting SSH2_MSG_KEX_ECDH_REPLY&#39; Error</h1>
+              
+              
+              
+              
+                <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on August 2, 2022
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;9&nbsp;minutes
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;1794&nbsp;words
+  
+  
+  
+</span>
+
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <p>I was trying to SSH into a Juniper switch running JunOS 12.3, the connection would fail with <code>Connection closed by &lt;switch IP&gt;</code>. Using ssh -vvv showed an error: <code>Debug: debug1: expecting SSH2_MSG_KEX_ECDH_REPLY</code>. This is a nice rabbit hole to go down as we&rsquo;re going to use SSH&rsquo;s verbose mode, nmap to debug the solution.</p>
+<h1 id="into-the-archives-we-must-go">Into the archives we must go</h1>
+<p>Looking into the logs of the switch after trying to SSH, produces: <code>sshd[1521]: fatal: ssh_dispatch_run_fatal: Connection to &lt;client ip address&gt;: unexpected internal error [preauth]</code></p>
+<p>Ok, so we have both the client and server side of the puzzle pieces. Resolving this doesn&rsquo;t immediately stand out to me, so we&rsquo;re going to hit the well trodden path of googling it and mixing in past experiences with nmap.</p>
+<p>It appears that it could be some sort of key exchange error at face value. Since this Juniper is running an older version of SSH, we could assume that the switch and the client can&rsquo;t agree on a key or cipher to use. Most likely the clients SSH has rotated old encryption algorithms out. But generally this would give an error <code>Unable to negotiate with &lt;IP&gt;: no matching key exchange method found. Their offer:</code> but instead just Connection closed. So this is a bit deeper.</p>
+<p>We can use SSH in verbose mode to see exactly what we&rsquo;re offered on both ends and where the hang up is:</p>
+<h2 id="ssh-verbose-mode">SSH verbose mode</h2>
+<p>Client to Server(local client KEXINIT proposal): <br>
+<code>ssh -vvv username@192.168.1.1</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">debug2: KEX algorithms: curve25519-sha256,curve25519-sha256@libssh.org
+</span></span><span class="line"><span class="cl">debug1: SSH2_MSG_KEXINIT received
+</span></span><span class="line"><span class="cl">debug2: local client KEXINIT proposal
+</span></span><span class="line"><span class="cl">debug2: ciphers ctos: aes256-gcm@openssh.com,chacha20-poly1305@openssh.com,aes256-ctr,aes128-gcm@openssh.com,aes128-ctr
+</span></span><span class="line"><span class="cl">&lt;snipped&gt;
+</span></span></code></pre></div><p>Server to Client response:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">debug2: KEX algorithms: curve25519-sha256@libssh.org
+</span></span><span class="line"><span class="cl">debug2: peer server KEXINIT proposal
+</span></span><span class="line"><span class="cl">ebug2: ciphers ctos: chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com,arcfour256,arcfour128,aes128-cbc,3des-cbc,blowfish-cbc,cast128-cbc,aes192-cbc,aes256-cbc,arcfour,rijndael-cbc@lysator.liu.se
+</span></span><span class="line"><span class="cl">&lt;snipped&gt;
+</span></span></code></pre></div><p>Then the agreed upon encryption:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">debug1: kex: algorithm: curve25519-sha256@libssh.org
+</span></span><span class="line"><span class="cl">debug1: kex: host key algorithm: ssh-ed25519
+</span></span><span class="line"><span class="cl">debug1: kex: server-&gt;client cipher: aes256-gcm@openssh.com MAC: &lt;implicit&gt; compression: none
+</span></span><span class="line"><span class="cl">debug1: kex: client-&gt;server cipher: aes256-gcm@openssh.com MAC: &lt;implicit&gt; compression: none
+</span></span><span class="line"><span class="cl">debug1: kex: curve25519-sha256@libssh.org need=32 dh_need=32
+</span></span><span class="line"><span class="cl">debug1: kex: curve25519-sha256@libssh.org need=32 dh_need=32
+</span></span><span class="line"><span class="cl">debug3: send packet: type 30
+</span></span><span class="line"><span class="cl">debug1: expecting SSH2_MSG_KEX_ECDH_REPLY
+</span></span><span class="line"><span class="cl">Connection closed by Switch port 22
+</span></span></code></pre></div><p>This all looks above board for a normal SSH connection so far. But notice the last message&hellip; So the remote end of the connection closed when it was time for the switch to reply.</p>
+<p>For completion sake, lets look at what a <strong>working</strong> output shows at this point so we can compare:
+<div class="splitbox"><div class="left">
+</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">debug3: send packet: type 30
+</span></span><span class="line"><span class="cl">debug1: expecting SSH2_MSG_KEX_ECDH_REPLY
+</span></span><span class="line"><span class="cl">debug3: receive packet: type 31
+</span></span><span class="line"><span class="cl">debug1: SSH2_MSG_KEX_ECDH_REPLY received
+</span></span></code></pre></div></div><div class="right">
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">debug3: send packet: type 30
+</span></span><span class="line"><span class="cl">debug1: expecting SSH2_MSG_KEX_ECDH_REPLY
+</span></span><span class="line"><span class="cl">Connection closed by Switch port 22
+</span></span></code></pre></div></div><div style="clear:both"></div></div>
+
+<p>We need to dig deeper on this&hellip;</p>
+<p>Let&rsquo;s look on the network with a packet capture. Interestingly the start is all in plain text(how a shared secret exchange happens).</p>
+<h2 id="wireshark-debug">Wireshark debug</h2>
+<p>Packet capture from the start of initiating an SSH connection:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Source           Destination        Protocol Length Sequence Number Info
+</span></span><span class="line"><span class="cl">Client           Switch             TCP      74     0               50604 → 22 [SYN] Seq=0 Win=64240 Len=0 MSS=1460 SACK_PERM=1 TSval=4271094762 TSecr=0 WS=128
+</span></span><span class="line"><span class="cl">Switch           Client             TCP      78     0               22 → 50604 [SYN, ACK] Seq=0 Ack=1 Win=65535 Len=0 MSS=1460 WS=2 TSval=2740708411 TSecr=4271094762 SACK_PERM=1
+</span></span><span class="line"><span class="cl">Client           Switch             TCP      66     1               50604 → 22 [ACK] Seq=1 Ack=1 Win=64256 Len=0 TSval=4271094766 TSecr=2740708411
+</span></span><span class="line"><span class="cl">Client           Switch             SSHv2    87     1               Client: Protocol (SSH-2.0-OpenSSH_8.8)
+</span></span><span class="line"><span class="cl">Switch           Client             TCP      66     1               22 → 50604 [ACK] Seq=1 Ack=22 Win=66586 Len=0 TSval=2740708516 TSecr=4271094767
+</span></span><span class="line"><span class="cl">Switch           Client             SSHv2    87     1               Server: Protocol (SSH-2.0-OpenSSH_6.9)
+</span></span><span class="line"><span class="cl">Client           Switch             TCP      66     22              50604 → 22 [ACK] Seq=22 Ack=22 Win=64256 Len=0 TSval=4271095015 TSecr=2740708659
+</span></span><span class="line"><span class="cl">Client           Switch             SSHv2    1426   22              Client: Key Exchange Init
+</span></span><span class="line"><span class="cl">Switch           Client             TCP      1514   22              22 → 50604 [ACK] Seq=22 Ack=1382 Win=65248 Len=1448 TSval=2740708692 TSecr=4271095015 [TCP segment of a reassembled PDU]
+</span></span><span class="line"><span class="cl">Client           Switch             TCP      66     1382            50604 → 22 [ACK] Seq=1382 Ack=1470 Win=64128 Len=0 TSval=4271095046 TSecr=2740708692
+</span></span><span class="line"><span class="cl">Switch           Client             SSHv2    266    1470            Server: Key Exchange Init
+</span></span><span class="line"><span class="cl">Client           Switch             TCP      66     1382            50604 → 22 [ACK] Seq=1382 Ack=1670 Win=64128 Len=0 TSval=4271095047 TSecr=2740708692
+</span></span><span class="line"><span class="cl">Client           Switch             SSHv2    114    1382            Client: Elliptic Curve Diffie-Hellman Key Exchange Init (Type 30)
+</span></span><span class="line"><span class="cl">&gt;Switch           Client             TCP      66     1670            22 → 50604 [FIN, ACK] Seq=1670 Ack=1430 Win=66608 Len=0 TSval=2740708705 TSecr=4271095048
+</span></span><span class="line"><span class="cl">Client           Switch             TCP      66     1430            50604 → 22 [FIN, ACK] Seq=1430 Ack=1671 Win=64128 Len=0 TSval=4271095062 TSecr=2740708705
+</span></span><span class="line"><span class="cl">Switch           Client             TCP      66     1671            22 → 50604 [ACK] Seq=1671 Ack=1431 Win=66606 Len=0 TSval=2740708710 TSecr=4271095062
+</span></span></code></pre></div><p>Looking at a packet capture, marked with the &gt; is when the switch sends a [FIN, ACK]. Which co-insides at the point we&rsquo;re seeing in the SSH debug.</p>
+<p>Below is another capture, but using a working session. So there should be a <strong>Server: Elliptic Curve Diffie-Hellman Key Exchange Reply, New Keys</strong> reply that we&rsquo;re not receiving.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Source           Destination         Protocol Length Sequence Number Info
+</span></span><span class="line"><span class="cl">Client           Switch              TCP      74     0               50606 → 22 [SYN] Seq=0 Win=64240 Len=0 MSS=1460 SACK_PERM=1 TSval=4272246787 TSecr=0 WS=128
+</span></span><span class="line"><span class="cl">Switch           Client              TCP      78     0               22 → 50606 [SYN, ACK] Seq=0 Ack=1 Win=65535 Len=0 MSS=1460 WS=2 TSval=2741860439 TSecr=4272246787 SACK_PERM=1
+</span></span><span class="line"><span class="cl">Client           Switch              TCP      66     1               50606 → 22 [ACK] Seq=1 Ack=1 Win=64256 Len=0 TSval=4272246789 TSecr=2741860439
+</span></span><span class="line"><span class="cl">Client           Switch              SSHv2    87     1               Client: Protocol (SSH-2.0-OpenSSH_8.8)
+</span></span><span class="line"><span class="cl">Switch           Client              TCP      66     1               22 → 50606 [ACK] Seq=1 Ack=22 Win=66586 Len=0 TSval=2741860543 TSecr=4272246790
+</span></span><span class="line"><span class="cl">Switch           Client              SSHv2    87     1               Server: Protocol (SSH-2.0-OpenSSH_6.9)
+</span></span><span class="line"><span class="cl">Client           Switch              TCP      66     22              50606 → 22 [ACK] Seq=22 Ack=22 Win=64256 Len=0 TSval=4272247042 TSecr=2741860691
+</span></span><span class="line"><span class="cl">Client           Switch              SSHv2    1258   22              Client: Key Exchange Init
+</span></span><span class="line"><span class="cl">Switch           Client              TCP      1514   22              22 → 50606 [ACK] Seq=22 Ack=1214 Win=65416 Len=1448 TSval=2741860723 TSecr=4272247042 [TCP segment of a reassembled PDU]
+</span></span><span class="line"><span class="cl">Switch           Client              SSHv2    266    1470            Server: Key Exchange Init
+</span></span><span class="line"><span class="cl">Client           Switch              TCP      66     1214            50606 → 22 [ACK] Seq=1214 Ack=1470 Win=64128 Len=0 TSval=4272247074 TSecr=2741860723
+</span></span><span class="line"><span class="cl">Client           Switch              TCP      66     1214            50606 → 22 [ACK] Seq=1214 Ack=1670 Win=64000 Len=0 TSval=4272247074 TSecr=2741860724
+</span></span><span class="line"><span class="cl">Client           Switch              SSHv2    114    1214            Client: Elliptic Curve Diffie-Hellman Key Exchange Init (Type 30)
+</span></span><span class="line"><span class="cl">Switch           Client              TCP      66     1670            22 → 50606 [ACK] Seq=1670 Ack=1262 Win=66608 Len=0 TSval=2741860830 TSecr=4272247075
+</span></span><span class="line"><span class="cl">Switch           Client              SSHv2    274    1670            Server: Elliptic Curve Diffie-Hellman Key Exchange Reply, New Keys (Type 31)
+</span></span><span class="line"><span class="cl">Client           Switch              TCP      66     1262            50606 → 22 [ACK] Seq=1262 Ack=1878 Win=64128 Len=0 TSval=4272247252 TSecr=2741860902
+</span></span><span class="line"><span class="cl">Client           Switch              SSHv2    82     1262            Client: New Keys
+</span></span><span class="line"><span class="cl">Switch           Client              TCP      66     1878            22 → 50606 [ACK] Seq=1878 Ack=1278 Win=66608 Len=0 TSval=2741861008 TSecr=4272247255
+</span></span><span class="line"><span class="cl">Client           Switch              SSHv2    134    1278            Client: Encrypted packet (len=68)
+</span></span></code></pre></div><p>Time to start digging into how an SSH handshake works and looking at <a href="https://datatracker.ietf.org/doc/html/rfc4419">RFC docs, section 3.</a> Also a good post about the <a href="https://goteleport.com/blog/ssh-handshake-explained">1. handshake.</a></p>
+<p>So briefly an SSH handshake has the following steps(See link above for more details: 1):</p>
+<ol>
+<li>SSH version exchange(simple: SSH-2.0-OpenSSH_8.8)</li>
+<li>Key Exchange (Client and Server exchange all info like algorithms - referred to as a KEKINIT - see sshdebug: SSH2_MSG_KEXINIT sent. Also viewable in a packet capture!)</li>
+<li>Elliptic Curve Diffie-Hellman Init (Client sends public key)(Compare the debug output and packet capture - see sshdebug: send packet: type 30)</li>
+<li>Elliptic Curve Diffie-Hellman Reply (Server generates keys using clients key + a lot more)(Expecting the reply from the switch - see sshdebug: receive packet: type 31)</li>
+<li>Client/Server New Keys (Generate new distinct keys for encryption and integrity)</li>
+</ol>
+<p>Off the bat, we can now see that the switch doesn&rsquo;t reply at step 4 - instead just closes the connection with FIN. We&rsquo;re expecting the switch to reply with the information to setup the connection. Step 4 is very important as there&rsquo;s a lot of moving parts required to create keys and secrets. If that fails, it&rsquo;s game over.</p>
+<h2 id="try-different-algorithms">Try different algorithms?</h2>
+<p>So, next we know that other clients can still connect to the switch(I used them in the working excerpts above) such as Putty. But not a Linux(Fedora 36) based SSH client using OpenSSH. This leads me to looking at what different algorithms are being used between them.</p>
+<p>Repeating the debug process, from a Windows 10 box, using Putty - but this time using a packet capture first because putty debug logging is bad. I noticed the cipher in Wireshark shows: <strong>SSH Version 2 (encryption:aes256-ctr mac:hmac-sha2-256 compression:none)</strong> for the SSH info after the switch replied(Step 4). Checking the capture from the Linux box shows it&rsquo;s empty because the switch never replied with an agreed cipher(Step 4.Elliptic Curve Diffie-Hellman Reply) - Wireshark therefore didn&rsquo;t include it. So it looks like aes256-ctr works and <a href="mailto:aes256-gcm@openssh.com">aes256-gcm@openssh.com</a> doesn&rsquo;t.</p>
+<p>Trying a different cipher from the Fedora box results in a working connection: <code>ssh -c chacha20-poly1305@openssh.com user@IP</code></p>
+<p>Using <code>ssh -Q cipher</code> to see what algorithms your client supports is also handy here if you don&rsquo;t want to debug the SSH output.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Ultimately, now to connect via SSH from a Linux box I use above modified ssh parameters as the workaround. You can also manually set it to use that cipher in the ssh_config for this particular host.</p>
+<p>Why it&rsquo;s failing at step 4, isn&rsquo;t clear and might be something due to Juniper&rsquo;s side. While digging around, I came across a mailing list post about this exact <a href="https://lists.archive.carbon60.com/nsp/juniper/68444">same issue.</a> They came to the same conclusion that using the <a href="mailto:aes128/256-gcm@openssh.com">aes128/256-gcm@openssh.com</a> cipher is causing the drama. Interesting to note, that apparently JunOS 12.3R12-<strong>S12</strong> doesn&rsquo;t include the aes128/256-gcm ciphers while JunOS 12.3R12-<strong>S13.1</strong> and above, does. (This switch is running <strong>S15</strong>)</p>
+<p>If it is on the Juniper side that also makes it harder to debug but worth a look further down the line after getting more familiar with JunOS. It does have a CLI and works based on FreeBSD. Quickly looking, there&rsquo;s what appears to be the sshd_conf in /var/etc that might accept the use of LogLevel option. But it&rsquo;s in production and just changing the ciphers on the client side isn&rsquo;t a bad workaround.</p>
+<p>This was still a good rabbit hole to go down in the end. I learnt how to debug SSH, how it works, what the client and server expect in steps with a debug and packet capture to go along with it.</p>
+<h3 id="bonus-content">Bonus content</h3>
+<p>We can also use handy NMAP to show all the available keys, ciphers and macs offered from the target device.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">nmap -sV --script ssh2-enum-algos -p 22 &lt;IP&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Nmap scan report for &lt;IP&gt;
+</span></span><span class="line"><span class="cl">Host is up (0.0030s latency).
+</span></span><span class="line"><span class="cl">PORT   STATE SERVICE VERSION
+</span></span><span class="line"><span class="cl">22/tcp open  ssh     OpenSSH 6.9 (protocol 2.0)
+</span></span><span class="line"><span class="cl">| ssh2-enum-algos: 
+</span></span><span class="line"><span class="cl">|   kex_algorithms: (8)
+</span></span><span class="line"><span class="cl">|       curve25519-sha256@libssh.org
+</span></span><span class="line"><span class="cl">|       ecdh-sha2-nistp256
+</span></span><span class="line"><span class="cl">|       ecdh-sha2-nistp384
+</span></span><span class="line"><span class="cl">|       ecdh-sha2-nistp521
+</span></span><span class="line"><span class="cl">|       diffie-hellman-group-exchange-sha256
+</span></span><span class="line"><span class="cl">|       diffie-hellman-group14-sha1
+</span></span><span class="line"><span class="cl">|   server_host_key_algorithms: (4)
+</span></span><span class="line"><span class="cl">|       ssh-rsa
+</span></span><span class="line"><span class="cl">|       ecdsa-sha2-nistp256
+</span></span><span class="line"><span class="cl">|       ssh-ed25519
+</span></span><span class="line"><span class="cl">|   encryption_algorithms: (16)
+</span></span><span class="line"><span class="cl">|       chacha20-poly1305@openssh.com
+</span></span><span class="line"><span class="cl">|       aes192-ctr
+</span></span><span class="line"><span class="cl">|       aes256-ctr
+</span></span><span class="line"><span class="cl">|       aes128-gcm@openssh.com
+</span></span><span class="line"><span class="cl">|       aes256-gcm@openssh.com
+</span></span><span class="line"><span class="cl">|   mac_algorithms: (19)
+</span></span><span class="line"><span class="cl">|       hmac-sha2-256-etm@openssh.com
+</span></span><span class="line"><span class="cl">|       hmac-sha2-512-etm@openssh.com
+</span></span><span class="line"><span class="cl">|       umac-64@openssh.com
+</span></span><span class="line"><span class="cl">|       umac-128@openssh.com
+</span></span><span class="line"><span class="cl">|       hmac-sha2-256
+</span></span><span class="line"><span class="cl">|       hmac-sha2-512
+</span></span><span class="line"><span class="cl">|       hmac-md5-etm@openssh.com
+</span></span><span class="line"><span class="cl">|   compression_algorithms: (2)
+</span></span><span class="line"><span class="cl">|       none
+</span></span><span class="line"><span class="cl">|_      zlib@openssh.com
+</span></span></code></pre></div><p><a href="https://www.comparitech.com/blog/information-security/ssh-encryption">Excellent how SSH works</a>
+<a href="https://supportportal.juniper.net/s/article/EX-Unable-to-SSH-or-Telnet-to-EX-switch?language=en_US">Unable to SSH or Telnet to EX switch - Juniper Knowledge base</a>
+<a href="https://ssh-comparison.quendi.de/comparison/cipher.html">A handy comparison chart site I found for compatibility of ciphers</a><br>
+<a href="https://infosec.mozilla.org/guidelines/openssh.html">Mozilla OpenSSH recommendations</a></p>
+<p>A note for future devices, there&rsquo;s a lot of older legacy algorithms disabled. Enabling only trusted:.</p>
+<p>For JunOS EX2200c, the commands are: <br>
+<code>edit system services ssh</code><br>
+<code>set ciphers [ &quot;chacha20-poly1305@openssh.com&quot; aes256-ctr aes192-ctr aes128-ctr ]</code></p>
+<p><code>set macs [ hmac-sha2-512 &quot;hmac-sha2-512-etm@openssh.com&quot; hmac-sha2-256 &quot;hmac-sha2-256-etm@openssh.com&quot; ]</code></p>
+<p><code>set key-exchange [ curve25519-sha256 ecdh-sha2-nistp521 ecdh-sha2-nistp384 ecdh-sha2-nistp256 ]</code></p>
+
+        
+          <div class="blog-tags">
+            
+              <a href="https://georou.github.io/tellmeaboot/tags/networking/">Networking</a>&nbsp;
+            
+          </div>
+        
+
+        
+
+        
+          
+            
+          
+
+          
+                  <h4 class="see-also">See also</h4>
+                  <ul>
+                
+                
+                    <li><a href="/tellmeaboot/post/2022/pfsense-ax88179-usb3-compatibility/">PfSense AX88179 vs RTL8153 USB 3 Ethernet Compatibility</a></li>
+                
+                    <li><a href="/tellmeaboot/post/2021/client-to-nvr-isolated-cctv/">Client to NVR Isolated CCTV with VLAN and a Virtual Machine</a></li>
+                
+                    <li><a href="/tellmeaboot/post/2021/ubiquiti-ap-proxy-arp/">Ubiquiti AP Proxy ARP Disruption</a></li>
+                
+                    <li><a href="/tellmeaboot/post/2021/cisco-sg300-port-security-and-mac-filtering/">Cisco SG300 Port Security and Static Mac Filtering</a></li>
+                
+              </ul>
+
+          
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://georou.github.io/tellmeaboot/post/2022/pfsense-lcdproc-ups-display/" data-toggle="tooltip" data-placement="top" title="pfSense LCDproc UPS Display">&larr; Previous Post</a>
+            </li>
+          
+          
+        </ul>
+      
+
+
+      
+
+    </div>
+  </div>
+</div>
+
+      
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="https://github.com/georou" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              <a href="tellmeaboot.com">georou</a>
+            
+          
+
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2022
+          
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://georou.github.io/tellmeaboot">Tell Me Aboot</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="https://gohugo.io">Hugo v0.118.2</a> powered &nbsp;&bull;&nbsp; Theme <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> adapted from <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
+		  &nbsp;&bull;&nbsp; If you break anything because of reading here, that's on you.
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer><script src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="https://georou.github.io/tellmeaboot/js/main.js"></script>
+<script src="https://georou.github.io/tellmeaboot/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://georou.github.io/tellmeaboot/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+
+
+
+    
+  </body>
+</html>
+

@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>PfSense AX88179 vs RTL8153 USB 3 Ethernet Compatibility - Tell Me Aboot</title>
+  <meta name="description" content="Trying to add another interface to a pfSense box but because it has run out of ports, I had to resort to using a USB 3 Ethernet dongle. Assuming (wrongly) that since it is based on the AX88179 chip and being somewhat older that it would be supported better. That wasn&rsquo;t the case.">
+  <meta name="author" content="georou"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "Tell Me Aboot",
+    
+    "url": "https:\/\/georou.github.io\/tellmeaboot"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/georou.github.io\/tellmeaboot"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/georou.github.io\/tellmeaboot",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/georou.github.io\/tellmeaboot\/post\/2022\/pfsense-ax88179-usb3-compatibility\/",
+          "name": "Pf sense ax88179 vs rtl8153 USB 3 ethernet compatibility"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "georou"
+  },
+  "headline": "PfSense AX88179 vs RTL8153 USB 3 Ethernet Compatibility",
+  "description" : "Trying to add another interface to a pfSense box but because it has run out of ports, I had to resort to using a USB 3 Ethernet dongle. Assuming (wrongly) that since it is based on the AX88179 chip and being somewhat older that it would be supported better. That wasn\u0026rsquo;t the case.\n",
+  "inLanguage" : "en",
+  "wordCount":  412 ,
+  "datePublished" : "2022-01-20T19:36:09",
+  "dateModified" : "2022-01-20T19:36:09",
+  "image" : "https:\/\/georou.github.io\/tellmeaboot\/NeoneBay.jpg",
+  "keywords" : [ "Networking" ],
+  "mainEntityOfPage" : "https:\/\/georou.github.io\/tellmeaboot\/post\/2022\/pfsense-ax88179-usb3-compatibility\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/georou.github.io\/tellmeaboot",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/georou.github.io\/tellmeaboot\/NeoneBay.jpg",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="PfSense AX88179 vs RTL8153 USB 3 Ethernet Compatibility" />
+<meta property="og:description" content="Trying to add another interface to a pfSense box but because it has run out of ports, I had to resort to using a USB 3 Ethernet dongle. Assuming (wrongly) that since it is based on the AX88179 chip and being somewhat older that it would be supported better. That wasn&rsquo;t the case.">
+<meta property="og:image" content="https://georou.github.io/tellmeaboot/NeoneBay.jpg" />
+<meta property="og:url" content="https://georou.github.io/tellmeaboot/post/2022/pfsense-ax88179-usb3-compatibility/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Tell Me Aboot" />
+
+  <meta name="twitter:title" content="PfSense AX88179 vs RTL8153 USB 3 Ethernet Compatibility" />
+  <meta name="twitter:description" content="Trying to add another interface to a pfSense box but because it has run out of ports, I had to resort to using a USB 3 Ethernet dongle. Assuming (wrongly) that since it is based on the AX88179 chip …">
+  <meta name="twitter:image" content="https://georou.github.io/tellmeaboot/NeoneBay.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link href='https://georou.github.io/tellmeaboot/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta name="generator" content="Hugo 0.118.2">
+  <link rel="alternate" href="https://georou.github.io/tellmeaboot/index.xml" type="application/rss+xml" title="Tell Me Aboot"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://georou.github.io/tellmeaboot/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https://georou.github.io/tellmeaboot/css/highlight.min.css" /><link rel="stylesheet" href="https://georou.github.io/tellmeaboot/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://georou.github.io/tellmeaboot">Tell Me Aboot</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Blog" href="/tellmeaboot">Blog</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tellmeaboot/tags">Tags</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/tellmeaboot/page/about/">About</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Archives" href="/tellmeaboot/post">Archives</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    
+      <div class="avatar-container">
+        <div class="avatar-img-border">
+          <a title="Tell Me Aboot" href="https://georou.github.io/tellmeaboot">
+            <img class="avatar-img" src="https://georou.github.io/tellmeaboot/NeoneBay.jpg" alt="Tell Me Aboot" />
+          </a>
+        </div>
+      </div>
+    
+
+  </div>
+</nav>
+
+
+
+
+    
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+  
+  
+  
+
+
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    
+    <div class="intro-header no-img">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              
+                <h1>PfSense AX88179 vs RTL8153 USB 3 Ethernet Compatibility</h1>
+              
+              
+              
+              
+                <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on January 20, 2022
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;412&nbsp;words
+  
+  
+  
+</span>
+
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <p>Trying to add another interface to a pfSense box but because it has run out of ports, I had to resort to using a USB 3 Ethernet dongle. Assuming (wrongly) that since it is based on the AX88179 chip and being somewhat older that it would be supported better. That wasn&rsquo;t the case.</p>
+<p>This is the dongle in question, they&rsquo;re pretty popular around Amazon or eBay.</p>
+<p><img src="/images/usb3-ethernet-ax88179.jpg" alt="USB3Dongle"></p>
+<p>In pfSense, it shows up in <code>dmesg</code> with the following:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ugen0.6: &lt;ASIX AX88179A&gt; at usbus0
+</span></span><span class="line"><span class="cl">axge0 on uhub1
+</span></span><span class="line"><span class="cl">axge0: &lt;NetworkInterface&gt; on usbus0
+</span></span><span class="line"><span class="cl">miibus2: &lt;MII bus&gt; on axge0
+</span></span><span class="line"><span class="cl">ukphy0: &lt;Generic IEEE 802.3u media interface&gt; PHY 3 on miibus2
+</span></span><span class="line"><span class="cl">ukphy0:  none, 10baseT, 10baseT-FDX, 100baseTX, 100baseTX-FDX, 1000baseT-FDX, 1000baseT-FDX-master, auto, auto-flow
+</span></span><span class="line"><span class="cl">ue1: &lt;USB Ethernet&gt; on axge0
+</span></span></code></pre></div><p><code>usbconfig -d ugen0.6 dump_device_desc shows:</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ugen0.6: &lt;ASIX AX88179A&gt; at usbus0, cfg=0 md=HOST spd=SUPER (5.0Gbps) pwr=ON (46mA)
+</span></span><span class="line"><span class="cl">  bLength = 0x0012
+</span></span><span class="line"><span class="cl">  bDescriptorType = 0x0001
+</span></span><span class="line"><span class="cl">  bcdUSB = 0x0320
+</span></span><span class="line"><span class="cl">  bDeviceClass = 0x0000  &lt;Probed by interface class&gt;
+</span></span><span class="line"><span class="cl">  bDeviceSubClass = 0x0000
+</span></span><span class="line"><span class="cl">  bDeviceProtocol = 0x0000
+</span></span><span class="line"><span class="cl">  bMaxPacketSize0 = 0x0009
+</span></span><span class="line"><span class="cl">  idVendor = 0x0b95
+</span></span><span class="line"><span class="cl">  idProduct = 0x1790
+</span></span><span class="line"><span class="cl">  bcdDevice = 0x0200
+</span></span><span class="line"><span class="cl">  iManufacturer = 0x0001  &lt;ASIX&gt;
+</span></span><span class="line"><span class="cl">  iProduct = 0x0002  &lt;AX88179A&gt;
+</span></span><span class="line"><span class="cl">  iSerialNumber = 0x0003  &lt;009EFBCB&gt;
+</span></span><span class="line"><span class="cl">  bNumConfigurations = 0x0003
+</span></span></code></pre></div><p>After a bit of time and traffic, errors can be seen on the interface:</p>
+<p><code>netstat -i:</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Name    Mtu Network       Address              Ipkts Ierrs Idrop    Opkts Oerrs  Coll
+</span></span><span class="line"><span class="cl">ue1    1500 &lt;Link#7&gt;      f8:e4:3b:00:00:00    12293 12293     0    13901     2     0
+</span></span></code></pre></div><p>Eventually, the link goes down with pfSense reporting a hotplug event:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Jul 25 19:15:42	php-fpm	56447	/rc.linkup: Hotplug event detected for OPT1(opt1) static IP (192.168.3.1 )
+</span></span></code></pre></div><p>I&rsquo;ve made sure to disable all the Offloading options within pfSense &gt; Advanced &gt; Networking - but they still purist. Interestingly, if the dongle is set to 10 Mbps, nothing gets through. Overall, the AX88179 feels very unstable. Using it on Linux seems to be fine.</p>
+<p>Now, this could be a USB3 driver problem, the driver for the dongle selected by pfSense/freeBSD, phy driver or other reasons that I haven&rsquo;t reached a point of learning about.</p>
+<p>In the end, it&rsquo;s lots of moving parts and time spent on a non critical issue. So, the next thing to try is a different ethernet chipset.</p>
+<h2 id="enter-the-rtl8153">Enter the <strong>RTL8153</strong></h2>
+<p><img src="/images/simplecom-nu303.jpg" alt="simplecom-nu303"></p>
+<p>Going with the ASIX was the point of not using a Realtek. The Realtek get a bad rap in the networking field, but in this instance, it&rsquo;s the opposite.</p>
+<p>I picked up a Simplecom NU303. There is also USB type-c versions.</p>
+<p>So far the RTL8153 based USB3 dongle is working fine in pfSense 2.6.0 in 2022. No errors or drop outs.</p>
+
+        
+          <div class="blog-tags">
+            
+              <a href="https://georou.github.io/tellmeaboot/tags/networking/">Networking</a>&nbsp;
+            
+          </div>
+        
+
+        
+
+        
+          
+            
+          
+
+          
+                  <h4 class="see-also">See also</h4>
+                  <ul>
+                
+                
+                    <li><a href="/tellmeaboot/post/2022/juniper-ssh-preauth-error/">Juniper Switch SSH &#39;Expecting SSH2_MSG_KEX_ECDH_REPLY&#39; Error</a></li>
+                
+                    <li><a href="/tellmeaboot/post/2021/client-to-nvr-isolated-cctv/">Client to NVR Isolated CCTV with VLAN and a Virtual Machine</a></li>
+                
+                    <li><a href="/tellmeaboot/post/2021/ubiquiti-ap-proxy-arp/">Ubiquiti AP Proxy ARP Disruption</a></li>
+                
+                    <li><a href="/tellmeaboot/post/2021/cisco-sg300-port-security-and-mac-filtering/">Cisco SG300 Port Security and Static Mac Filtering</a></li>
+                
+              </ul>
+
+          
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://georou.github.io/tellmeaboot/post/2021/client-to-nvr-isolated-cctv/" data-toggle="tooltip" data-placement="top" title="Client to NVR Isolated CCTV with VLAN and a Virtual Machine">&larr; Previous Post</a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="https://georou.github.io/tellmeaboot/post/2022/pfsense-lcdproc-ups-display/" data-toggle="tooltip" data-placement="top" title="pfSense LCDproc UPS Display">Next Post &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+
+    </div>
+  </div>
+</div>
+
+      
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="https://github.com/georou" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              <a href="tellmeaboot.com">georou</a>
+            
+          
+
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2022
+          
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://georou.github.io/tellmeaboot">Tell Me Aboot</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="https://gohugo.io">Hugo v0.118.2</a> powered &nbsp;&bull;&nbsp; Theme <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> adapted from <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
+		  &nbsp;&bull;&nbsp; If you break anything because of reading here, that's on you.
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer><script src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="https://georou.github.io/tellmeaboot/js/main.js"></script>
+<script src="https://georou.github.io/tellmeaboot/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://georou.github.io/tellmeaboot/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+
+
+
+    
+  </body>
+</html>
+

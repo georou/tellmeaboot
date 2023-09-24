@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Auditing on Tell Me Aboot</title>
+    <link>https://georou.github.io/tellmeaboot/categories/auditing/</link>
+    <description>Recent content in Auditing on Tell Me Aboot</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 10 Sep 2017 08:01:44 +1100</lastBuildDate><atom:link href="https://georou.github.io/tellmeaboot/categories/auditing/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How To Access An IP Camera&#39;s Embedded Linux OS Through A Serial UART/TTL Port</title>
+      <link>https://georou.github.io/tellmeaboot/post/2017/ip-camera-security-audit/</link>
+      <pubDate>Sun, 10 Sep 2017 08:01:44 +1100</pubDate>
+      
+      <guid>https://georou.github.io/tellmeaboot/post/2017/ip-camera-security-audit/</guid>
+      <description>&lt;p&gt;IP Cameras and Internet of Things in this day and age mostly have serial ports available on their PCB that will allow you to gain root access. They nearly all run embedded Linux and so, with some electronics and Linux knowledge, we can have a look around in the OS.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Electronics on Tell Me Aboot</title>
+    <link>https://georou.github.io/tellmeaboot/categories/electronics/</link>
+    <description>Recent content in Electronics on Tell Me Aboot</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 20 Feb 2017 02:18:52 +1100</lastBuildDate><atom:link href="https://georou.github.io/tellmeaboot/categories/electronics/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Using a Chromecast with an Analog TV</title>
+      <link>https://georou.github.io/tellmeaboot/post/2017/chromecast-hdmi-to-composite-converter/</link>
+      <pubDate>Mon, 20 Feb 2017 02:18:52 +1100</pubDate>
+      
+      <guid>https://georou.github.io/tellmeaboot/post/2017/chromecast-hdmi-to-composite-converter/</guid>
+      <description>&lt;p&gt;Using a Chromecast is an excellent, simple and convenient way to watch Netflix, YouTube or even cast your local media to a TV. But what if you only have a spare analog TV lying around? Using a HDMI to Composite converter you can bring that TV back to life for under $25!&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
